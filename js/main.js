@@ -73,9 +73,9 @@ function createNewDOMPin(JSObjectPin) {
 */
 function fillContainer(container, listJSElements) {
   var fragment = new DocumentFragment();
-  for (var i = 0; i < listJSElements.length; i++) {
-    fragment.appendChild(createNewDOMPin(listJSElements[i]));
-  }
+  listJSElements.forEach(function (item) {
+    return fragment.appendChild(createNewDOMPin(item));
+  });
   container.appendChild(fragment);
 }
 
