@@ -139,7 +139,7 @@ function createPhotos(photos, template) {
 }
 
 function showCard(card) {
-  var cardContainer = cardTemplate.cloneNode(true)
+  var cardContainer = cardTemplate.cloneNode(true);
   cardContainer = cardContainer.querySelector('article');
 
   cardContainer.querySelector('.popup__title').innerText = card.offer.title;
