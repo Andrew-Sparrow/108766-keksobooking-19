@@ -9,6 +9,9 @@ var MIN_Y = 130;
 var MAX_X = document.querySelector('.map__pins').scrollWidth - 100;
 var MAX_Y = 630;
 
+var mapPinMain = document.querySelector('.map__pin--main');
+
+
 var apartmentTypes = [
   'palace',
   'flat',
@@ -175,3 +178,11 @@ function init() {
 }
 
 init();
+
+mapPinMain.addEventListener('mousedown', onMouseButton);
+
+function onMouseButton(evt) {
+  if (evt.button === 0) {
+    console.log('hi');
+  }
+}
