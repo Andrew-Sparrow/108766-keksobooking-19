@@ -10,6 +10,9 @@ var MIN_Y = 130;
 
 var MAX_X = document.querySelector('.map__pins').scrollWidth;
 var MAX_Y = 630;
+var DECIMAL_NUMBER_SYSTEM = 10;
+var OPTION_VALUE_HUNDRED_ROOMS = 100;
+var OPTION_VALUE_OF_NOT_FOR_GUESTS = 0;
 
 var mapPinMain = document.querySelector('.map__pin--main');
 var map = document.querySelector('.map');
@@ -18,6 +21,7 @@ var addressField = document.querySelector('#address');
 var roomNumber = adForm.querySelector('#room_number');
 var guestsCapacity = adForm.querySelector('#capacity');
 var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
+var ads = [];
 
 
 var apartmentTypes = [
@@ -47,22 +51,15 @@ var photoSources = [
   'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
   'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
 ];
-/*
-var typesMap = {
-  palace: 'Дворец',
-  flat: 'Квартира',
-  bungalow: 'Бунгало',
-  house: 'Дом'
-};
-*/
+
 var pinTemplate = document.querySelector('#pin').content;
-// var cardTemplate = document.querySelector('#card').content;
 
 // returns random integer in range
 function generateRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; // The maximum is inclusive and the minimum is inclusive
+  // The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function getRandomArrayElement(array) {
@@ -79,8 +76,6 @@ function createVariousLengthArray(array) {
   var length = generateRandomIntInclusive(1, array.length);
   return array.slice(0, length);
 }
-
-var ads = [];
 
 function generateAds() {
   for (var i = 0; i < MAX_AD_NUM; i++) {
@@ -126,66 +121,11 @@ function generatePins() {
   var pinsContainer = document.querySelector('.map__pins');
   pinsContainer.appendChild(fragment);
 }
-/*
-function createFeatures(features) {
-  var fragment = new DocumentFragment();
-  features.forEach(function (feature) {
-    var li = document.createElement('li');
-    li.classList.add('popup__feature');
-    li.classList.add('popup__feature--' + feature);
-    fragment.appendChild(li);
-  });
 
-  return fragment;
-}
-
-function createPhotos(photos, template) {
-  var fragment = new DocumentFragment();
-  photos.forEach(function (src) {
-    var img = template.cloneNode(true);
-    img.src = src;
-    fragment.appendChild(img);
-  });
-  return fragment;
-}
-*/
-/*
-function showCard(card) {
-  var cardContainer = cardTemplate.cloneNode(true);
-  cardContainer = cardContainer.querySelector('article');
-
-  cardContainer.querySelector('.popup__title').innerText = card.offer.title;
-  cardContainer.querySelector('.popup__text--address').innerText = card.offer.address;
-  cardContainer.querySelector('.popup__text--price').innerText = card.offer.price;
-
-  cardContainer.querySelector('.popup__type').innerText = typesMap[card.offer.type];
-
-  cardContainer.querySelector('.popup__text--capacity').innerText = card.offer.rooms + ' комнат для ' + card.offer.guests;
-  cardContainer.querySelector('.popup__text--time').innerText = 'Заезд до ' + card.offer.checkin + ' выезд до ' + card.offer.checkout;
-
-  var features = cardContainer.querySelector('.popup__features');
-  features.innerText = '';
-  features.appendChild(createFeatures(card.offer.features));
-
-  cardContainer.querySelector('.popup__description').innetText = card.offer.description;
-  var photos = cardContainer.querySelector('.popup__photos');
-  var photoTemplate = photos.querySelector('img').cloneNode(true);
-  photos.innerText = '';
-  photos.appendChild(createPhotos(card.offer.photos, photoTemplate));
-
-  cardContainer.querySelector('.popup__avatar').src = card.author.avatar;
-
-  return cardContainer;
-}
-*/
 function init() {
   generateAds();
   generatePins();
-  // var card = showCard(ads[0]);
-  // var mFilterContainer = document.querySelector('.map__filters-container');
-  // mFilterContainer.insertAdjacentElement('beforebegin', card);
 }
-
 
 mapPinMain.addEventListener('mousedown', onMouseButton);
 mapPinMain.addEventListener('keydown', onKeyDown);
@@ -202,37 +142,38 @@ function onKeyDown(evt) {
   }
 }
 
+adFormSubmitButton.disabled = true;
+
 function setFormOnActiveState() {
   map.classList.remove('map--faded');
   adForm.classList.remove('ad-form--disabled');
   init();
   toggleFormElements(false);
-  validateGuestCapacity();
+  // validateGuestCapacity();
   addressField.value = getPointerCoordinateMainPin();
 }
+
+function disableElements(elements, isDisabled) {
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].disabled = isDisabled;
+  }
+}
+
 /* code from qodo.co.uk */
 // function disables/activates the elements
 function toggleFormElements(isDisabled) {
   var inputs = adForm.getElementsByTagName('input');
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].disabled = isDisabled;
-  }
+  disableElements(inputs, isDisabled);
   var selects = adForm.getElementsByTagName('select');
-  for (var j = 0; j < selects.length; j++) {
-    selects[j].disabled = isDisabled;
-  }
+  disableElements(selects, isDisabled);
   var textareas = adForm.getElementsByTagName('textarea');
-  for (var k = 0; k < textareas.length; k++) {
-    textareas[k].disabled = isDisabled;
-  }
+  disableElements(textareas, isDisabled);
   var buttons = adForm.getElementsByTagName('button');
-  for (var l = 0; l < buttons.length; l++) {
-    buttons[l].disabled = isDisabled;
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].disabled = isDisabled;
   }
   var labels = adForm.getElementsByTagName('label');
-  for (var m = 0; m < buttons.length; m++) {
-    labels[m].disabled = isDisabled;
-  }
+  disableElements(labels, isDisabled);
 }
 
 toggleFormElements(true);
@@ -272,27 +213,24 @@ function getSelectedFromGuestsCapacity() {
   return valueGuests;
 }
 
-function validateGuestCapacity() {
-  var valueFromRoomNumber = parseInt(getSelectedFromRoomNumber(), 10);
-  var valueFromGuestsCapacity = parseInt(getSelectedFromGuestsCapacity(), 10);
+function changeFormFeaturesByValidate() {
+  adFormSubmitButton.disabled = true;
+  adFormSubmitButton.classList.add('ad-form--disabled');
+  roomNumber.setCustomValidity('Количество мест - "не для гостей" должно совпадать с количеством комнат - 100');
+  roomNumber.reportValidity();
+}
 
-  if (valueFromRoomNumber === 100 && valueFromGuestsCapacity !== 0) {
-    adFormSubmitButton.disabled = true;
-    adFormSubmitButton.classList.add('ad-form--disabled');
-    roomNumber.setCustomValidity('Количество мест - "не для гостей" должно совпадать с количеством комнат - 100');
-    roomNumber.reportValidity();
-  } else if (valueFromRoomNumber < 100 && valueFromGuestsCapacity === 0) {
-    adFormSubmitButton.disabled = true;
-    adFormSubmitButton.classList.add('ad-form--disabled');
-    roomNumber.setCustomValidity('Количество мест - "не для гостей" должно совпадать с количеством комнат 100');
-    roomNumber.reportValidity();
-    adFormSubmitButton.classList.add('ad-form--disabled');
+function validateGuestCapacity() {
+  var valueFromRoomNumber = parseInt(getSelectedFromRoomNumber(), DECIMAL_NUMBER_SYSTEM);
+  var valueFromGuestsCapacity = parseInt(getSelectedFromGuestsCapacity(), DECIMAL_NUMBER_SYSTEM);
+
+  if (valueFromRoomNumber === OPTION_VALUE_HUNDRED_ROOMS && valueFromGuestsCapacity !== OPTION_VALUE_OF_NOT_FOR_GUESTS) {
+    changeFormFeaturesByValidate();
+  } else if (valueFromRoomNumber < OPTION_VALUE_HUNDRED_ROOMS && valueFromGuestsCapacity === OPTION_VALUE_OF_NOT_FOR_GUESTS) {
+    changeFormFeaturesByValidate();
   } else if (valueFromGuestsCapacity > valueFromRoomNumber) {
-    adFormSubmitButton.disabled = true;
-    adFormSubmitButton.classList.add('ad-form--disabled');
+    changeFormFeaturesByValidate();
     roomNumber.setCustomValidity('Количество комнат не может быть меньше количества гостей');
-    roomNumber.reportValidity();
-    adFormSubmitButton.classList.add('ad-form--disabled');
   } else {
     adFormSubmitButton.classList.remove('ad-form--disabled');
     adFormSubmitButton.disabled = false;
@@ -300,6 +238,5 @@ function validateGuestCapacity() {
   }
 }
 
-validateGuestCapacity();
 guestsCapacity.addEventListener('change', validateGuestCapacity);
 roomNumber.addEventListener('change', validateGuestCapacity);
