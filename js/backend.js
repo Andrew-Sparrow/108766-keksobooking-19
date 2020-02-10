@@ -5,7 +5,7 @@
 
   window.backend = {
     load: load,
-    // save: save
+    errorHandler: errorHandler
   };
 
   var statusCode = {
@@ -29,8 +29,7 @@
 
       switch (xhr.status) {
         case statusCode.OK:
-          // onLoad(xhr.response);
-          console.log(xhr.response);
+          onLoad(xhr.response);
           break;
         case statusCode.badRequest:
           error = statusCode.badRequest + ' - Неверный запрос';
@@ -62,7 +61,7 @@
     xhr.send();
   }
 
-  var errorHandler = function (errorMessage) {
+  function errorHandler(errorMessage) {
     var node = document.createElement('div');
     node.style =
       'z-index: 100;' +
@@ -76,8 +75,6 @@
 
     node.textContent = errorMessage;
     document.body.insertAdjacentElement('afterbegin', node);
-  };
-
-  window.backend.load();
+  }
 
 })();
