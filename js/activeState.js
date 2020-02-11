@@ -25,13 +25,12 @@
   adFormSubmitButton.disabled = true;
 
   var ads = window.composeAds.generateAds;
-  var pins = window.composePins.generatePins;
 
   function setFormOnActiveState() {
     map.classList.remove('map--faded');
     adForm.classList.remove('ad-form--disabled');
     ads();
-    pins();
+    window.backend.load(window.composePins.generatePins, window.backend.errorHandler);
     toggleFormElements(false);
     addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
   }
@@ -43,7 +42,6 @@
   }
 
   /* code from qodo.co.uk */
-
   // function disables/activates the elements
   function toggleFormElements(isDisabled) {
     var inputs = adForm.getElementsByTagName('input');

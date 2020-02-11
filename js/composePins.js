@@ -1,7 +1,7 @@
 'use strict';
 (function () {
 
-  var ads = window.composeAds.ads;
+  // var ads = window.composeAds.ads;
 
   var MAX_PINS_NUM = 8;
 
@@ -11,7 +11,7 @@
     generatePins: generatePins
   };
 
-  function generatePins() {
+  function generatePins(ads) {
     var fragment = new DocumentFragment();
 
     for (var i = 0; i < MAX_PINS_NUM; i++) {
@@ -20,9 +20,10 @@
       var pinImg = pin.querySelector('img');
       pin.style = 'left: ' + ads[i].location.x + 'px; top: ' + ads[i].location.y + 'px;"';
       pinImg.src = ads[i].author.avatar;
-      pinImg.alt = ads[i].author.title;
+      pinImg.alt = ads[i].offer.title;
       fragment.appendChild(pin);
     }
+
     var pinsContainer = document.querySelector('.map__pins');
     pinsContainer.appendChild(fragment);
   }
