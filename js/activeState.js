@@ -5,7 +5,8 @@
   var addressField = document.querySelector('#address');
   var adForm = document.querySelector('.ad-form');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
-  var mapPinMain = document.querySelector('.map__pin--main');
+  var mapPinMain = map.querySelector('.map__pin--main');
+  var mFilterContainer = document.querySelector('.map__filters-container');
 
   mapPinMain.addEventListener('mousedown', onMouseButton);
   mapPinMain.addEventListener('keydown', onKeyDown);
@@ -24,15 +25,20 @@
 
   adFormSubmitButton.disabled = true;
 
-  var ads = window.composeAds.generateAds;
+  // creating array of ads from server
+  window.backend.load(window.composeAds.generateAds, window.backend.errorHandler);
 
   function setFormOnActiveState() {
-    map.classList.remove('map--faded');
-    adForm.classList.remove('ad-form--disabled');
-    ads();
-    window.backend.load(window.composePins.generatePins, window.backend.errorHandler);
-    toggleFormElements(false);
-    addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
+    // verify active state on button to prevent download data by clicking on the button
+    if (!mapPinMain.classList.contains('map__pin--mainActive')) {
+      map.classList.remove('map--faded');
+      adForm.classList.remove('ad-form--disabled');
+      mapPinMain.classList.add('map__pin--mainActive');
+      window.composePins.generatePins(window.composeAds.ads);
+      toggleFormElements(false);
+      addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
+      mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
+    }
   }
 
   function disableElements(elements, isDisabled) {
