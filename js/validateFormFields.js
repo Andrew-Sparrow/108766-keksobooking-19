@@ -34,43 +34,51 @@
     if ((!isNaN(price.value) && price.value > 1000000 || (!isNaN(price.value) && price.value < minimalPriceForNight))
      || isNaN(price.value)) {
       setErrorState(price, 'Числовое поле, минимальная цена - ' + minimalPriceForNight + ', Максимальное цена — 1 000 000.');
+      price.classList.remove('ad-form__element--correct');
     } else {
       removeDisable(price);
+      price.className = 'ad-form__element--correct';
     }
   }
 
   function validateTitle() {
     if (title.value.length < 30 || title.value.length > 100) {
       setErrorState(title, 'Обязательное текстовое поле, Минимальная длина — 30 символов, Максимальная длина — 100 символов.');
+      title.classList.remove('ad-form__element--correct');
     } else {
       removeDisable(title);
+      title.className = 'ad-form__element--correct';
     }
   }
 
-  title.addEventListener('change', validateTitle);
+  title.addEventListener('input', validateTitle);
 
-  function validateTypeofHousing() {
+  function setTypeofHousing() {
     switch (getSelectedFromTypeHousing()) {
       case 'bungalow' :
         minimalPriceForNight = 0;
         price.placeholder = minimalPriceForNight;
+        validatePrice();
         break;
       case 'flat':
         minimalPriceForNight = 1000;
         price.placeholder = minimalPriceForNight;
+        validatePrice();
         break;
       case 'house':
         minimalPriceForNight = 5000;
         price.placeholder = minimalPriceForNight;
+        validatePrice();
         break;
       case 'palace':
         minimalPriceForNight = 10000;
         price.placeholder = minimalPriceForNight;
+        validatePrice();
         break;
     }
   }
 
-  typeHousing.addEventListener('change', validateTypeofHousing);
-  price.addEventListener('change', validatePrice);
+  typeHousing.addEventListener('change', setTypeofHousing);
+  price.addEventListener('input', validatePrice);
 
 })();
