@@ -7,6 +7,8 @@
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
   var mapPinMain = map.querySelector('.map__pin--main');
   var mFilterContainer = document.querySelector('.map__filters-container');
+  var address = document.querySelector('#address');
+
 
   mapPinMain.addEventListener('mousedown', onMouseButton);
   mapPinMain.addEventListener('keydown', onKeyDown);
@@ -36,6 +38,7 @@
       mapPinMain.classList.add('map__pin--mainActive');
       window.composePins.generatePins(window.composeAds.ads);
       toggleFormElements(false);
+      address.disabled = true; // disable input address
       addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
       mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
     }

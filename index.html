@@ -110,7 +110,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес</label>
-          <input id="address" name="address" type="text">
+          <input id="address" name="address" type="text" disabled>
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -179,7 +179,12 @@
           <label class="ad-form__label">Фотография жилья</label>
           <div class="ad-form__photo-container">
             <div class="ad-form__upload">
-              <input type="file" id="images" name="images" class="ad-form__input visually-hidden">
+              <input
+               class="ad-form__input visually-hidden"
+               type="file"
+               id="images"
+               name="images"
+               accept="image/*">
               <label for="images" class="ad-form__drop-zone">Загрузить<br>фото...</label>
             </div>
             <div class="ad-form__photo"></div>
@@ -264,6 +269,7 @@
 <script src="js/popupCard.js"></script>
 <script src="js/validateFormFields.js"></script>
 <script src="js/validateGuests.js"></script>
+<script src="js/changeCheckin.js"></script>
 
 </body>
 </html>

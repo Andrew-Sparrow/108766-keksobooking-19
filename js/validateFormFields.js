@@ -9,7 +9,9 @@
 
   window.validateFormFields = {
     setErrorState: setErrorState,
-    removeDisable: removeDisable
+    removeDisable: removeDisable,
+    isPriceValid: true,
+    isTitleValid: false
   };
 
   function getSelectedFromTypeHousing() {
@@ -34,10 +36,12 @@
     if ((!isNaN(price.value) && price.value > 1000000 || (!isNaN(price.value) && price.value < minimalPriceForNight))
      || isNaN(price.value)) {
       setErrorState(price, 'Числовое поле, минимальная цена - ' + minimalPriceForNight + ', Максимальное цена — 1 000 000.');
+      window.validateFormFields.isPriceValid = false;
       price.classList.remove('ad-form__element--correct');
     } else {
       removeDisable(price);
       price.className = 'ad-form__element--correct';
+      window.validateFormFields.isPriceValid = true;
     }
   }
 
@@ -45,9 +49,11 @@
     if (title.value.length < 30 || title.value.length > 100) {
       setErrorState(title, 'Обязательное текстовое поле, Минимальная длина — 30 символов, Максимальная длина — 100 символов.');
       title.classList.remove('ad-form__element--correct');
+      window.validateFormFields.isTitleValid = false;
     } else {
       removeDisable(title);
       title.className = 'ad-form__element--correct';
+      window.validateFormFields.isTitleValid = true;
     }
   }
 

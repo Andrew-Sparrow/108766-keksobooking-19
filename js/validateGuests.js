@@ -10,6 +10,10 @@
   var roomNumber = adForm.querySelector('#room_number');
   var guestsCapacity = adForm.querySelector('#capacity');
 
+  window.validateGuests = {
+    isValid: true,
+  };
+
   function getSelectedFromRoomNumber() {
     var valueRoom = roomNumber.options[roomNumber.selectedIndex].value;
     return valueRoom;
@@ -26,10 +30,13 @@
 
     if (valueFromRoomNumber === OPTION_VALUE_HUNDRED_ROOMS && valueFromGuestsCapacity !== OPTION_VALUE_OF_NOT_FOR_GUESTS) {
       window.validateFormFields.setErrorState(roomNumber, 'Количество мест - "не для гостей" должно совпадать с количеством комнат - 100');
+      window.validateGuests.isValid = false;
     } else if (valueFromRoomNumber < OPTION_VALUE_HUNDRED_ROOMS && valueFromGuestsCapacity === OPTION_VALUE_OF_NOT_FOR_GUESTS) {
       window.validateFormFields.setErrorState(roomNumber, 'Количество мест - "не для гостей" должно совпадать с количеством комнат - 100');
+      window.validateGuests.isValid = false;
     } else if (valueFromGuestsCapacity > valueFromRoomNumber) {
       window.validateFormFields.setErrorState(roomNumber, 'Количество мест - "не для гостей" должно совпадать с количеством комнат - 100');
+      window.validateGuests.isValid = false;
       roomNumber.setCustomValidity('Количество комнат не может быть меньше количества гостей');
     } else {
       window.validateFormFields.removeDisable(roomNumber);
