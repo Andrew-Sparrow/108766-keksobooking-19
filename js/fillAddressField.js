@@ -24,7 +24,7 @@
     var centerX = getXCoordinateMainPin() + Math.floor(WIDTH_MAIN_PIN / 2);
     var centerY = getYCoordinatesMainPin() + Math.floor(HEIGHT_MAIN_PIN / 2);
     var centerCoordinate = centerX + ', ' + centerY;
-    return centerCoordinate;
+    return centerCoordinate + '';
   }
 
   function getPointerCoordinateMainPin() {

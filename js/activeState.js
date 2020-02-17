@@ -37,7 +37,7 @@
       mapPinMain.classList.add('map__pin--mainActive');
       window.composePins.generatePins(window.composeAds.ads);
       toggleFormElements(false);
-      address.disabled = true; // disable input address
+      // address.disabled = true; // disable input address
       // addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
       mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
     }
