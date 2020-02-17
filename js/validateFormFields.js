@@ -61,7 +61,7 @@
 
   function setTypeofHousing() {
     switch (getSelectedFromTypeHousing()) {
-      case 'bungalow' :
+      case 'bungalo' :
         minimalPriceForNight = 0;
         price.placeholder = minimalPriceForNight;
         validatePrice();

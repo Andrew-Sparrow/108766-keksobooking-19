@@ -1,11 +1,11 @@
 'use strict';
 (function () {
+  var cardTemplate = document.querySelector('#card').content;
 
   window.popupCard = {
     createCardTemplate: createCardTemplate,
   };
 
-  var cardTemplate = document.querySelector('#card').content;
 
   function createCardTemplate() {
     var cardContainer = cardTemplate.cloneNode(true);
@@ -15,4 +15,5 @@
 
     return cardContainer;
   }
+
 })();

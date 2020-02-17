@@ -2,7 +2,6 @@
 (function () {
 
   var map = document.querySelector('.map');
-  var addressField = document.querySelector('#address');
   var adForm = document.querySelector('.ad-form');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
   var mapPinMain = map.querySelector('.map__pin--main');
@@ -39,7 +38,7 @@
       window.composePins.generatePins(window.composeAds.ads);
       toggleFormElements(false);
       address.disabled = true; // disable input address
-      addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
+      // addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
       mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
     }
   }

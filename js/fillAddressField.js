@@ -35,5 +35,6 @@
   }
 
   // sets the value of address field with data of main pin coordinates
-  addressField.value = getCenterCoordinatesMainPin();
+  // addressField.value = getCenterCoordinatesMainPin();
+  addressField.setAttribute('value', getCenterCoordinatesMainPin());
 })();

@@ -66,8 +66,16 @@
     function displayPopup(index) {
       var offers = window.composeAds.ads;
       var popup = map.querySelector('.popup');
+      var popupClose = popup.querySelector('.popup__close');
       var features = popup.querySelector('.popup__features');
       var photos = popup.querySelector('.popup__photos');
+
+      function closePopup() {
+        popup.style = 'display: none';
+        popupClose.removeEventListener('click', closePopup);
+      }
+
+      popupClose.addEventListener('click', closePopup);
 
       popup.querySelector('.popup__title').innerText = offers[index].offer.title;
 
