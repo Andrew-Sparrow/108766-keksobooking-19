@@ -24,7 +24,7 @@
     var centerX = getXCoordinateMainPin() + Math.floor(WIDTH_MAIN_PIN / 2);
     var centerY = getYCoordinatesMainPin() + Math.floor(HEIGHT_MAIN_PIN / 2);
     var centerCoordinate = centerX + ', ' + centerY;
-    return centerCoordinate;
+    return centerCoordinate + '';
   }
 
   function getPointerCoordinateMainPin() {
@@ -35,5 +35,6 @@
   }
 
   // sets the value of address field with data of main pin coordinates
-  addressField.value = getCenterCoordinatesMainPin();
+  // addressField.value = getCenterCoordinatesMainPin();
+  addressField.setAttribute('value', getCenterCoordinatesMainPin());
 })();
