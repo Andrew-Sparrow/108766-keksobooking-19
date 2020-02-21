@@ -1,9 +1,7 @@
 'use strict';
 (function () {
 
-  // var ads = window.composeAds.ads;
-
-  var MAX_PINS_NUM = 8;
+  var MAX_PINS_NUM = 5;
 
   var pinTemplate = document.querySelector('#pin').content;
   var map = document.querySelector('.map');
@@ -11,7 +9,6 @@
   var photoTemplate = document.querySelector('#card').content;
   var clonePhotoTemplate = photoTemplate.cloneNode(true);
   var imgTemplate = clonePhotoTemplate.querySelector('.popup__photo');
-
 
   window.composePins = {
     generatePins: generatePins

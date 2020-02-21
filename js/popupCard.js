@@ -6,7 +6,6 @@
     createCardTemplate: createCardTemplate,
   };
 
-
   function createCardTemplate() {
     var cardContainer = cardTemplate.cloneNode(true);
 
