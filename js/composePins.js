@@ -46,7 +46,7 @@
       pin.addEventListener('click', function () {
         iterateOverPins();
         pin.classList.add('map__pin--active');
-        displayPopup(index);
+        displayPopup(index, ads);
       });
     }
 
@@ -60,8 +60,9 @@
       });
     }
 
-    function displayPopup(index) {
-      var offers = window.composeAds.ads;
+    // creates proper popup's data for each pins
+    function displayPopup(index, dwellings) {
+      var offers = dwellings;
       var popup = map.querySelector('.popup');
       var popupClose = popup.querySelector('.popup__close');
       var features = popup.querySelector('.popup__features');
@@ -134,8 +135,8 @@
     }
 
     for (var i = 0; i < MAX_PINS_NUM; i++) {
-      if (ads[i].offer) {
       // verify if add has offer property
+      if (ads[i].offer !== undefined) {
         var pinContainer = pinTemplate.cloneNode(true);
         var pin = pinContainer.querySelector('.map__pin');
         var pinImg = pin.querySelector('img');
