@@ -2,6 +2,7 @@
 (function () {
 
   var MAX_PINS_NUM = 5;
+  var MILLISECONDS = 100;
 
   var pinTemplate = document.querySelector('#pin').content;
   var map = document.querySelector('.map');
@@ -44,9 +45,9 @@
     // this function made for closures
     function pinListener(pin, index) {
       pin.addEventListener('click', function () {
+        fillPopupByData(index, ads);
         iterateOverPins();
         pin.classList.add('map__pin--active');
-        displayPopup(index, ads);
       });
     }
 
@@ -61,19 +62,17 @@
     }
 
     // creates proper popup's data for each pins
-    function displayPopup(index, dwellings) {
+    function fillPopupByData(index, dwellings) {
       var offers = dwellings;
       var popup = map.querySelector('.popup');
       var popupClose = popup.querySelector('.popup__close');
       var features = popup.querySelector('.popup__features');
       var photos = popup.querySelector('.popup__photos');
 
-      function closePopup() {
-        popup.style = 'display: none';
-        popupClose.removeEventListener('click', closePopup);
-      }
-
-      popupClose.addEventListener('click', closePopup);
+      // setting closing button to default focus;
+      setTimeout(function () {
+        popupClose.focus();
+      }, MILLISECONDS);
 
       popup.querySelector('.popup__title').innerText = offers[index].offer.title;
 
@@ -132,6 +131,7 @@
       }
 
       popup.style = 'display: block';
+
     }
 
     for (var i = 0; i < MAX_PINS_NUM; i++) {

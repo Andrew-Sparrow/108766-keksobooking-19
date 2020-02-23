@@ -34,6 +34,7 @@
       window.composePins.generatePins(window.composeAds.ads);
       toggleFormElements(false);
       mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
+      mapPinMain.blur();
     }
   }
 
