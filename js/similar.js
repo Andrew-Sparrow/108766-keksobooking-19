@@ -22,7 +22,7 @@
 
     valueOfTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
     house.onTypeChange(valueOfTypeHouse);
-    updatePins();
+    window.debounce(updatePins());
   });
 
   function getRank(apartment) {
