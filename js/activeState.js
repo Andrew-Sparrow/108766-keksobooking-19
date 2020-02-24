@@ -8,10 +8,10 @@
   var mFilterContainer = document.querySelector('.map__filters-container');
 
 
-  mapPinMain.addEventListener('mousedown', onMouseButton);
+  mapPinMain.addEventListener('mousedown', onMouseDown);
   mapPinMain.addEventListener('keydown', onKeyDown);
 
-  function onMouseButton(evt) {
+  function onMouseDown(evt) {
     if (evt.button === 0) {
       setFormOnActiveState();
     }
