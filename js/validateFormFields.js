@@ -3,6 +3,13 @@
   var adForm = document.querySelector('.ad-form');
   var price = adForm.querySelector('#price');
   var minimalPriceForNight = 1000;
+  var MINIMAL_PRICE_FOR_BUNGALOW = 0;
+  var MINIMAL_PRICE_FOR_FLAT = 1000;
+  var MINIMAL_PRICE_FOR_HOUSE = 5000;
+  var MINIMAL_PRICE_FOR_PALACE = 10000;
+  var MAXIMAL_PRICE = 1000000;
+  var MINIMAL_LENGTH_OF_TEXT_FIELD = 30;
+  var MAXIMAL_LENGTH_OF_TEXT_FIELD = 100;
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
   var title = adForm.querySelector('#title');
   var typeHousing = adForm.querySelector('#type');
@@ -33,7 +40,7 @@
   }
 
   function validatePrice() {
-    if ((!isNaN(price.value) && price.value > 1000000 || (!isNaN(price.value) && price.value < minimalPriceForNight))
+    if ((!isNaN(price.value) && price.value > MAXIMAL_PRICE || (!isNaN(price.value) && price.value < minimalPriceForNight))
      || isNaN(price.value)) {
       setErrorState(price, 'Числовое поле, минимальная цена - ' + minimalPriceForNight + ', Максимальное цена — 1 000 000.');
       window.validateFormFields.isPriceValid = false;
@@ -46,7 +53,7 @@
   }
 
   function validateTitle() {
-    if (title.value.length < 30 || title.value.length > 100) {
+    if (title.value.length < MINIMAL_LENGTH_OF_TEXT_FIELD || title.value.length > MAXIMAL_LENGTH_OF_TEXT_FIELD) {
       setErrorState(title, 'Обязательное текстовое поле, Минимальная длина — 30 символов, Максимальная длина — 100 символов.');
       title.classList.remove('ad-form__element--correct');
       window.validateFormFields.isTitleValid = false;
@@ -62,22 +69,22 @@
   function setTypeofHousing() {
     switch (getSelectedFromTypeHousing()) {
       case 'bungalo' :
-        minimalPriceForNight = 0;
+        minimalPriceForNight = MINIMAL_PRICE_FOR_BUNGALOW;
         price.placeholder = minimalPriceForNight;
         validatePrice();
         break;
       case 'flat':
-        minimalPriceForNight = 1000;
+        minimalPriceForNight = MINIMAL_PRICE_FOR_FLAT;
         price.placeholder = minimalPriceForNight;
         validatePrice();
         break;
       case 'house':
-        minimalPriceForNight = 5000;
+        minimalPriceForNight = MINIMAL_PRICE_FOR_HOUSE;
         price.placeholder = minimalPriceForNight;
         validatePrice();
         break;
       case 'palace':
-        minimalPriceForNight = 10000;
+        minimalPriceForNight = MINIMAL_PRICE_FOR_PALACE;
         price.placeholder = minimalPriceForNight;
         validatePrice();
         break;

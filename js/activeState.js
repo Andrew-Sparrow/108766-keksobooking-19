@@ -8,10 +8,10 @@
   var mFilterContainer = document.querySelector('.map__filters-container');
 
 
-  mapPinMain.addEventListener('mousedown', onMouseButton);
+  mapPinMain.addEventListener('mousedown', onMouseDown);
   mapPinMain.addEventListener('keydown', onKeyDown);
 
-  function onMouseButton(evt) {
+  function onMouseDown(evt) {
     if (evt.button === 0) {
       setFormOnActiveState();
     }
@@ -25,9 +25,6 @@
 
   adFormSubmitButton.disabled = true;
 
-  // creating array of ads from server
-  window.backend.load(window.composeAds.generateAds, window.backend.errorHandler);
-
   function setFormOnActiveState() {
     // verify active state on button to prevent download data by clicking on the button
     if (!mapPinMain.classList.contains('map__pin--mainActive')) {
@@ -36,9 +33,8 @@
       mapPinMain.classList.add('map__pin--mainActive');
       window.composePins.generatePins(window.composeAds.ads);
       toggleFormElements(false);
-      // address.disabled = true; // disable input address
-      // addressField.value = window.fillAddressField.getPointerCoordinateMainPin;
       mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
+      mapPinMain.blur();
     }
   }
 

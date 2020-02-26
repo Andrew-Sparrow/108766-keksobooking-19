@@ -1,21 +1,21 @@
 'use strict';
 
 (function () {
-  var URL = 'https://js.dump.academy/keksobooking/data';
+  var TIMEOUT_IN_MS = 3000; // 3s
 
-  window.backend = {
-    load: load,
-    errorHandler: errorHandler
-  };
-
-  var statusCode = {
+  var STATUS_CODE = {
     OK: 200,
     badRequest: 400,
     unauthorized: 401,
     notFound: 404
   };
 
-  var TIMEOUT_IN_MS = 3000; // 3s
+  var URL = 'https://js.dump.academy/keksobooking/data';
+
+  window.backend = {
+    load: load,
+    errorHandler: errorHandler
+  };
 
   function load(onLoad, onError) {
     var xhr = new XMLHttpRequest();
@@ -28,17 +28,17 @@
       var error;
 
       switch (xhr.status) {
-        case statusCode.OK:
+        case STATUS_CODE.OK:
           onLoad(xhr.response);
           break;
-        case statusCode.badRequest:
-          error = statusCode.badRequest + ' - Неверный запрос';
+        case STATUS_CODE.badRequest:
+          error = STATUS_CODE.badRequest + ' - Неверный запрос';
           break;
-        case statusCode.unauthorized:
-          error = statusCode.unauthorized + ' - Пользователь не авторизован';
+        case STATUS_CODE.unauthorized:
+          error = STATUS_CODE.unauthorized + ' - Пользователь не авторизован';
           break;
-        case statusCode.notFound:
-          error = statusCode.notFound + ' - Ничего не найдено';
+        case STATUS_CODE.notFound:
+          error = STATUS_CODE.notFound + ' - Ничего не найдено';
           break;
         default:
           error = 'Cтатус ответа: : ' + xhr.status + ' ' + xhr.statusText;
