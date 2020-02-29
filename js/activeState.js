@@ -7,7 +7,6 @@
   var mapPinMain = map.querySelector('.map__pin--main');
   var mFilterContainer = document.querySelector('.map__filters-container');
 
-
   mapPinMain.addEventListener('mousedown', onMouseDown);
   mapPinMain.addEventListener('keydown', onKeyDown);
 
