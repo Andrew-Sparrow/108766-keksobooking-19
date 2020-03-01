@@ -1,8 +1,9 @@
 'use strict';
 
 (function () {
-  var WIDTH_MAIN_PIN = 65;
-  var HEIGHT_MAIN_PIN = 65;
+
+  window.WIDTH_MAIN_PIN = 65;
+  window.HEIGHT_MAIN_PIN = 65;
 
   var addressField = document.querySelector('#address');
   var mapPinMain = document.querySelector('.map__pin--main');
@@ -11,6 +12,7 @@
     getPointerCoordinateMainPin: getPointerCoordinateMainPin(),
     mapPinMain: mapPinMain
   };
+
 
   function getXCoordinateMainPin() {
     return mapPinMain.offsetLeft;
@@ -21,15 +23,15 @@
   }
 
   function getCenterCoordinatesMainPin() {
-    var centerX = getXCoordinateMainPin() + Math.floor(WIDTH_MAIN_PIN / 2);
-    var centerY = getYCoordinatesMainPin() + Math.floor(HEIGHT_MAIN_PIN / 2);
+    var centerX = getXCoordinateMainPin() + Math.floor(window.WIDTH_MAIN_PIN / 2);
+    var centerY = getYCoordinatesMainPin() + Math.floor(window.HEIGHT_MAIN_PIN / 2);
     var centerCoordinate = centerX + ', ' + centerY;
     return centerCoordinate + '';
   }
 
   function getPointerCoordinateMainPin() {
-    var centerX = getXCoordinateMainPin() + Math.floor(WIDTH_MAIN_PIN / 2);
-    var centerY = getYCoordinatesMainPin() + HEIGHT_MAIN_PIN;
+    var centerX = getXCoordinateMainPin() + Math.floor(window.WIDTH_MAIN_PIN / 2);
+    var centerY = getYCoordinatesMainPin() + window.HEIGHT_MAIN_PIN;
     var centerCoordinate = centerX + ', ' + centerY;
     return centerCoordinate;
   }

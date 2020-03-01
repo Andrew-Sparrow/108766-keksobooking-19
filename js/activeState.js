@@ -53,9 +53,11 @@
     var textareas = adForm.getElementsByTagName('textarea');
     disableElements(textareas, isDisabled);
     var buttons = adForm.getElementsByTagName('button');
+
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].disabled = isDisabled;
     }
+
     var labels = adForm.getElementsByTagName('label');
     disableElements(labels, isDisabled);
   }
