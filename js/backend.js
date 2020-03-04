@@ -11,6 +11,7 @@
   };
 
   var URL = 'https://js.dump.academy/keksobooking/data';
+  var URLtoSendForm = 'https://js.dump.academy/keksobooking';
 
   window.backend = {
     load: load,
