@@ -11,7 +11,7 @@
 
     xhr.onload = function () {
       if (xhr.status === 200 && xhr.readyState === 4) {
-        console.log(xhr.responseText);
+        window.setFormInactiveState.setFormOnInactiveState();
       } else {
         console.log('error');
       }
@@ -22,4 +22,3 @@
   }, false);
 
 })();
-
