@@ -16,20 +16,20 @@
   function onMouseDown(evt) {
     evt.preventDefault();
 
-    var xStartCoordinates = evt.clientX;
-    var yStartCoordinates = evt.clientY;
+    var xStartCoordinate = evt.clientX;
+    var yStartCoordinate = evt.clientY;
 
-    var xShiftCoordinate = xStartCoordinates - evt.clientX;
-    var yShiftCoordinate = yStartCoordinates - evt.clientY;
+    var xShiftCoordinate = xStartCoordinate - evt.clientX;
+    var yShiftCoordinate = yStartCoordinate - evt.clientY;
 
     function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
 
-      xShiftCoordinate = xStartCoordinates - moveEvt.clientX;
-      yShiftCoordinate = yStartCoordinates - moveEvt.clientY;
+      xShiftCoordinate = xStartCoordinate - moveEvt.clientX;
+      yShiftCoordinate = yStartCoordinate - moveEvt.clientY;
 
-      xStartCoordinates = moveEvt.clientX;
-      yStartCoordinates = moveEvt.clientY;
+      xStartCoordinate = moveEvt.clientX;
+      yStartCoordinate = moveEvt.clientY;
 
       function yConstraint() {
         var yMoved = mapPinMain.offsetTop - yShiftCoordinate;
