@@ -10,10 +10,11 @@
     xhr.open('POST', URLtoSendForm, true);
 
     xhr.onload = function () {
+
       if (xhr.status === 200 && xhr.readyState === 4) {
         window.setFormInactiveState.setFormOnInactiveState();
       } else {
-        console.log('error');
+        window.errorSendForm.errorHandler();
       }
     };
     xhr.send(formData);
