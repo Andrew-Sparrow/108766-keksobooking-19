@@ -10,6 +10,7 @@
 
   window.setFormInactiveState = {
     setFormOnInactiveState: setFormOnInactiveState,
+    successSendForm: successSendForm,
   };
 
   function setFormOnInactiveState() {
@@ -33,6 +34,10 @@
         element.remove();
       });
     }
+  }
+
+  function successSendForm() {
+    setFormOnInactiveState();
 
     var containerSuccess = templateSuccess.cloneNode(true);
     main.appendChild(containerSuccess);
