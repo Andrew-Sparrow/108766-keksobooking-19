@@ -1,19 +1,20 @@
 'use strict';
 (function () {
+  var main = document.querySelector('main');
   var map = document.querySelector('.map');
+  var mapPinMain = map.querySelector('.map__pin--main');
   var adForm = document.querySelector('.ad-form');
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
-  var mapPinMain = map.querySelector('.map__pin--main');
+  var addressField = document.querySelector('#address');
   var templateSuccess = document.querySelector('#success').content;
-  var main = document.querySelector('main');
 
 
-  window.setFormInactiveState = {
-    setFormOnInactiveState: setFormOnInactiveState,
+  window.successSendForm = {
+    setFormInactiveState: setFormInactiveState,
     successSendForm: successSendForm,
   };
 
-  function setFormOnInactiveState() {
+  function setFormInactiveState() {
     var mapCard = map.querySelector('article.map__card');
 
     if (mapPinMain.classList.contains('map__pin--mainActive')) {
@@ -33,16 +34,25 @@
       pinElements.forEach(function (element) {
         element.remove();
       });
+
+      // set main pin to center
+      mapPinMain.style.top = '375px';
+      mapPinMain.style.left = '570px';
+
+      addressField.setAttribute('value', window.fillAddressField.getPointerCoordinateMainPin());
+
     }
   }
 
   function successSendForm() {
-    setFormOnInactiveState();
+
+    setFormInactiveState();
 
     var containerSuccess = templateSuccess.cloneNode(true);
+    var clickOutsideSuccess = window.errorSendForm.clickOutside;
+
     main.appendChild(containerSuccess);
 
-    var clickOutsideSuccess = window.errorSendForm.clickOutside;
 
     window.onkeydown = function (event) {
       if (event.key === 'Escape') {
