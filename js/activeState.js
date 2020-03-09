@@ -7,6 +7,10 @@
   var mapPinMain = map.querySelector('.map__pin--main');
   var mFilterContainer = document.querySelector('.map__filters-container');
 
+  window.activeState = {
+    toggleFormElements: toggleFormElements,
+  };
+
   mapPinMain.addEventListener('mousedown', onMouseDown);
   mapPinMain.addEventListener('keydown', onKeyDown);
 
@@ -34,6 +38,10 @@
       toggleFormElements(false);
       mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
       mapPinMain.blur();
+
+      var pinElements = map.querySelectorAll('.map__pin--similar');
+      window.activeState.pinElements = pinElements;
+
     }
   }
 

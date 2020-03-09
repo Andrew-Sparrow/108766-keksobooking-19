@@ -9,7 +9,7 @@
   var mapPinMain = document.querySelector('.map__pin--main');
 
   window.fillAddressField = {
-    getPointerCoordinateMainPin: getPointerCoordinateMainPin(),
+    getPointerCoordinateMainPin: getPointerCoordinateMainPin,
     mapPinMain: mapPinMain
   };
 

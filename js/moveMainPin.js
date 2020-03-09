@@ -16,29 +16,23 @@
   function onMouseDown(evt) {
     evt.preventDefault();
 
-    var startCoordinates = {
-      x: evt.clientX,
-      y: evt.clientY
-    };
+    var xStartCoordinate = evt.clientX;
+    var yStartCoordinate = evt.clientY;
 
-    var shiftCoordinates = {
-      x: startCoordinates.x - evt.clientX,
-      y: startCoordinates.y - evt.clientY
-    };
+    var xShiftCoordinate = xStartCoordinate - evt.clientX;
+    var yShiftCoordinate = yStartCoordinate - evt.clientY;
 
     function onMouseMove(moveEvt) {
       moveEvt.preventDefault();
 
-      shiftCoordinates.x = startCoordinates.x - moveEvt.clientX;
-      shiftCoordinates.y = startCoordinates.y - moveEvt.clientY;
+      xShiftCoordinate = xStartCoordinate - moveEvt.clientX;
+      yShiftCoordinate = yStartCoordinate - moveEvt.clientY;
 
-      startCoordinates = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
-      };
+      xStartCoordinate = moveEvt.clientX;
+      yStartCoordinate = moveEvt.clientY;
 
       function yConstraint() {
-        var yMoved = mapPinMain.offsetTop - shiftCoordinates.y;
+        var yMoved = mapPinMain.offsetTop - yShiftCoordinate;
 
         if (yMoved <= MIN_Y) {
           return MIN_Y;
@@ -51,8 +45,7 @@
       }
 
       function xConstraint() {
-        var xMoved = (mapPinMain.offsetLeft) - shiftCoordinates.x;
-
+        var xMoved = (mapPinMain.offsetLeft) - xShiftCoordinate;
         if (xMoved <= MIN_X) {
           return MIN_X;
         }
@@ -68,9 +61,8 @@
 
       mapPinMain.style.top = yConstraint() + 'px';
       mapPinMain.style.left = xConstraint() + 'px';
-      addressField.setAttribute('value', xPointerForFieldAddress + ', ' + yPointerForFieldAddress);
+      addressField.value = xPointerForFieldAddress + ', ' + yPointerForFieldAddress;
     }
-
 
     function onMouseUp(upEvt) {
       upEvt.preventDefault();
@@ -83,6 +75,6 @@
     document.addEventListener('mouseup', onMouseUp);
   }
 
-  document.addEventListener('mousedown', onMouseDown);
+  mapPinMain.addEventListener('mousedown', onMouseDown);
 
 })();
