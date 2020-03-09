@@ -3,13 +3,28 @@
 (function () {
 
   var typeHousingFilter = document.querySelector('#housing-type');
+  var priceHousingFilter = document.querySelector('#housing-price');
+  var roomsHousingFilter = document.querySelector('#housing-rooms');
+  var guestsHousingFilter = document.querySelector('#housing-guests');
+
+  var wifiHousingFilter = document.querySelector('#filter-wifi');
+  var dishwasherHousingFilter = document.querySelector('#filter-dishwasher');
+  var parkingHousingFilter = document.querySelector('#filter-parking');
+  var washerHousingFilter = document.querySelector('#filter-washer');
+  var elevatorHousingFilter = document.querySelector('#filter-elevator');
+  var conditionerHousingFilter = document.querySelector('#filter-conditioner');
+
   var houses = [];
   var valueOfTypeHouse;
+  var valueOfPriceHouse;
   var pinsContainer = document.querySelector('.map__pins');
 
   var house = {
     onTypeChange: function (typeHouse) {
       return typeHouse;
+    },
+    onPriceChange: function (priceHouse) {
+      return priceHouse;
     },
   };
 
@@ -25,12 +40,25 @@
     window.debounce(updatePins());
   });
 
+  priceHousingFilter.addEventListener('change', function () {
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueOfPriceHouse = priceHousingFilter.options[priceHousingFilter.selectedIndex].value;
+    house.onPriceChange(valueOfPriceHouse);
+    window.debounce(updatePins());
+  });
+
   function getRank(apartment) {
     var rank = 0;
 
     if (apartment.offer.type !== undefined) {
       if (apartment.offer.type === valueOfTypeHouse) {
         rank += 2;
+      }
+      // TODO
+      if (apartment.offer.price === valueOfPriceHouse) {
+        rank += 1;
       }
     } else {
       rank = 0;
