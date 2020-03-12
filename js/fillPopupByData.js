@@ -6,6 +6,13 @@
   var clonePhotoTemplate = photoTemplate.cloneNode(true);
   var imgTemplate = clonePhotoTemplate.querySelector('.popup__photo');
 
+  var typeApartmnent = {
+    'palace': 'Дворец',
+    'flat': 'Квартира',
+    'house': 'Дом',
+    'bungalo': 'Бунгало',
+  };
+
 
   function createFeatures(features) {
     var fragment = new DocumentFragment();
@@ -62,7 +69,7 @@
       popup.querySelector('.popup__text--price').innerText = offers[index].offer.price;
 
       if (offers[index].offer.type !== undefined) {
-        popup.querySelector('.popup__type').innerText = offers[index].offer.type;
+        popup.querySelector('.popup__type').innerText = typeApartmnent[offers[index].offer.type];
       } else {
         popup.querySelector('.popup__type').style = 'display: none';
       }

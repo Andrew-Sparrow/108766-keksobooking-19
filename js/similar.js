@@ -21,6 +21,13 @@
   var valueOfRoomNumbers = roomsHousingFilter.options[roomsHousingFilter.selectedIndex].value;
   var valueOfGuestsNumbers = guestsHousingFilter.options[guestsHousingFilter.selectedIndex].value;
 
+  var valueWiFiFilter = null;
+  var valueDishwasherFilter = null;
+  var valueParkingFilter = null;
+  var valueWasherFilter = null;
+  var valueElevatorFilter = null;
+  var valueConditionerFilter = null;
+
 
   window.backend.load(successHandler, window.backend.errorHandler);
 
@@ -59,38 +66,105 @@
     window.debounce(updatePins());
   });
 
+
+  wifiHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueWiFiFilter = wifiHousingFilter.value;
+    window.debounce(updatePins());
+  });
+
+  dishwasherHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueDishwasherFilter = dishwasherHousingFilter.value;
+    window.debounce(updatePins());
+  });
+
+  parkingHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueParkingFilter = parkingHousingFilter.value;
+    window.debounce(updatePins());
+  });
+
+  washerHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueWasherFilter = washerHousingFilter.value;
+    window.debounce(updatePins());
+  });
+
+  elevatorHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueElevatorFilter = elevatorHousingFilter.value;
+    window.debounce(updatePins());
+  });
+
+  conditionerHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueConditionerFilter = conditionerHousingFilter.value;
+    window.debounce(updatePins());
+  });
+
   function getRank(apartment) {
     var rank = 0;
 
-    if (apartment.offer.type !== undefined) {
-      // console.log('valueOfTypeHouse', valueOfTypeHouse);
-      if (valueOfTypeHouse === apartment.offer.type) {
-
-        rank += 2;
-      }
-      if (valueOfPriceHouse === 'middle') {
-        if (apartment.offer.price >= 10000 && apartment.offer.price <= 50000) {
-          rank += 1;
-        }
-      }
-      if (valueOfPriceHouse === 'low') {
-        if (apartment.offer.price < 10000) {
-          rank += 1;
-        }
-      }
-      if (valueOfPriceHouse === 'high') {
-        if (apartment.offer.price > 50000) {
-          rank += 1;
-        }
-      }
-      if (+valueOfRoomNumbers === apartment.offer.rooms) {
+    if (valueOfTypeHouse === apartment.offer.type) {
+      rank += 1;
+    }
+    if (valueOfPriceHouse === 'middle') {
+      if (apartment.offer.price >= 10000 && apartment.offer.price <= 50000) {
         rank += 1;
       }
-      if (+valueOfGuestsNumbers === apartment.offer.guests) {
+    }
+    if (valueOfPriceHouse === 'low') {
+      if (apartment.offer.price < 10000) {
         rank += 1;
       }
-    } else {
-      rank = 0;
+    }
+    if (valueOfPriceHouse === 'high') {
+      if (apartment.offer.price > 50000) {
+        rank += 1;
+      }
+    }
+    if (+valueOfRoomNumbers === apartment.offer.rooms) {
+      rank += 1;
+    }
+    if (+valueOfGuestsNumbers === apartment.offer.guests) {
+      rank += 1;
+    }
+    if (apartment.offer.features.includes(valueWiFiFilter) && wifiHousingFilter.checked) {
+      rank += 1;
+    }
+    if (apartment.offer.features.includes(valueDishwasherFilter) && dishwasherHousingFilter.checked) {
+      rank += 1;
+    }
+    if (apartment.offer.features.includes(valueParkingFilter) && parkingHousingFilter.checked) {
+      rank += 1;
+    }
+    if (apartment.offer.features.includes(valueWasherFilter) && washerHousingFilter.checked) {
+      rank += 1;
+    }
+    if (apartment.offer.features.includes(valueElevatorFilter) && elevatorHousingFilter.checked) {
+      rank += 1;
+    }
+    if (apartment.offer.features.includes(valueConditionerFilter) && conditionerHousingFilter.checked) {
+      rank += 1;
     }
 
     return rank;
