@@ -31,13 +31,21 @@
 
   window.backend.load(successHandler, window.backend.errorHandler);
 
+  var filters = {
+    onTypeHouseChange: function () {},
+  };
+
   typeHousingFilter.addEventListener('change', function () {
     // hide opened popup card
     var popupCard = document.querySelector('.map__card');
     popupCard.style = 'display: none';
 
-    valueOfTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
-    window.debounce(updatePins());
+    var newTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
+
+    filters.onTypeHouseChange(newTypeHouse);
+
+    // valueOfTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
+    // window.debounce(updatePins());
   });
 
   priceHousingFilter.addEventListener('change', function () {
@@ -121,6 +129,11 @@
     window.debounce(updatePins());
   });
 
+
+  window.filters = filters;
+
+  // ------------------------------------------------------------------------------------
+
   function getRank(apartment) {
     var rank = 0;
 
@@ -199,5 +212,10 @@
 
     window.composePins.generatePins(sorting(houses));
   }
+
+  window.filters.onTypeHouseChange = function (typeOfHouse) {
+    valueOfTypeHouse = typeOfHouse;
+    window.debounce(updatePins());
+  };
 
 })();
