@@ -2,6 +2,7 @@
 
 (function () {
 
+  var pinsContainer = document.querySelector('.map__pins');
   var typeHousingFilter = document.querySelector('#housing-type');
   var priceHousingFilter = document.querySelector('#housing-price');
   var roomsHousingFilter = document.querySelector('#housing-rooms');
@@ -15,18 +16,11 @@
   var conditionerHousingFilter = document.querySelector('#filter-conditioner');
 
   var houses = [];
-  var valueOfTypeHouse;
-  var valueOfPriceHouse;
-  var pinsContainer = document.querySelector('.map__pins');
+  var valueOfTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
+  var valueOfPriceHouse = priceHousingFilter.options[priceHousingFilter.selectedIndex].value;
+  var valueOfRoomNumbers = roomsHousingFilter.options[roomsHousingFilter.selectedIndex].value;
+  var valueOfGuestsNumbers = guestsHousingFilter.options[guestsHousingFilter.selectedIndex].value;
 
-  var house = {
-    onTypeChange: function (typeHouse) {
-      return typeHouse;
-    },
-    onPriceChange: function (priceHouse) {
-      return priceHouse;
-    },
-  };
 
   window.backend.load(successHandler, window.backend.errorHandler);
 
@@ -36,7 +30,6 @@
     popupCard.style = 'display: none';
 
     valueOfTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
-    house.onTypeChange(valueOfTypeHouse);
     window.debounce(updatePins());
   });
 
@@ -45,7 +38,24 @@
     popupCard.style = 'display: none';
 
     valueOfPriceHouse = priceHousingFilter.options[priceHousingFilter.selectedIndex].value;
-    house.onPriceChange(valueOfPriceHouse);
+    window.debounce(updatePins());
+  });
+
+  roomsHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueOfRoomNumbers = roomsHousingFilter.options[roomsHousingFilter.selectedIndex].value;
+    window.debounce(updatePins());
+  });
+
+  guestsHousingFilter.addEventListener('change', function () {
+    // hide opened popup card
+    var popupCard = document.querySelector('.map__card');
+    popupCard.style = 'display: none';
+
+    valueOfGuestsNumbers = guestsHousingFilter.options[guestsHousingFilter.selectedIndex].value;
     window.debounce(updatePins());
   });
 
@@ -53,11 +63,30 @@
     var rank = 0;
 
     if (apartment.offer.type !== undefined) {
-      if (apartment.offer.type === valueOfTypeHouse) {
+      // console.log('valueOfTypeHouse', valueOfTypeHouse);
+      if (valueOfTypeHouse === apartment.offer.type) {
+
         rank += 2;
       }
-      // TODO
-      if (apartment.offer.price === valueOfPriceHouse) {
+      if (valueOfPriceHouse === 'middle') {
+        if (apartment.offer.price >= 10000 && apartment.offer.price <= 50000) {
+          rank += 1;
+        }
+      }
+      if (valueOfPriceHouse === 'low') {
+        if (apartment.offer.price < 10000) {
+          rank += 1;
+        }
+      }
+      if (valueOfPriceHouse === 'high') {
+        if (apartment.offer.price > 50000) {
+          rank += 1;
+        }
+      }
+      if (+valueOfRoomNumbers === apartment.offer.rooms) {
+        rank += 1;
+      }
+      if (+valueOfGuestsNumbers === apartment.offer.guests) {
         rank += 1;
       }
     } else {
