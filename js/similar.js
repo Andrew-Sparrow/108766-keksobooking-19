@@ -130,7 +130,7 @@
     window.debounce(updatePins());
   };
 
-  // Features handlers ---------------------------------------
+  // Features handlers ------------------------------------
 
   window.filters.onWiFiFeatureChange = function (wifiOfHouse) {
     valueWiFiFilter = wifiOfHouse;
