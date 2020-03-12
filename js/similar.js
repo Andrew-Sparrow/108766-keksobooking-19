@@ -31,109 +31,6 @@
 
   window.backend.load(successHandler, window.backend.errorHandler);
 
-  var filters = {
-    onTypeHouseChange: function () {},
-  };
-
-  typeHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    var newTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
-
-    filters.onTypeHouseChange(newTypeHouse);
-
-    // valueOfTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
-    // window.debounce(updatePins());
-  });
-
-  priceHousingFilter.addEventListener('change', function () {
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueOfPriceHouse = priceHousingFilter.options[priceHousingFilter.selectedIndex].value;
-    window.debounce(updatePins());
-  });
-
-  roomsHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueOfRoomNumbers = roomsHousingFilter.options[roomsHousingFilter.selectedIndex].value;
-    window.debounce(updatePins());
-  });
-
-  guestsHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueOfGuestsNumbers = guestsHousingFilter.options[guestsHousingFilter.selectedIndex].value;
-    window.debounce(updatePins());
-  });
-
-
-  wifiHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueWiFiFilter = wifiHousingFilter.value;
-    window.debounce(updatePins());
-  });
-
-  dishwasherHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueDishwasherFilter = dishwasherHousingFilter.value;
-    window.debounce(updatePins());
-  });
-
-  parkingHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueParkingFilter = parkingHousingFilter.value;
-    window.debounce(updatePins());
-  });
-
-  washerHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueWasherFilter = washerHousingFilter.value;
-    window.debounce(updatePins());
-  });
-
-  elevatorHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueElevatorFilter = elevatorHousingFilter.value;
-    window.debounce(updatePins());
-  });
-
-  conditionerHousingFilter.addEventListener('change', function () {
-    // hide opened popup card
-    var popupCard = document.querySelector('.map__card');
-    popupCard.style = 'display: none';
-
-    valueConditionerFilter = conditionerHousingFilter.value;
-    window.debounce(updatePins());
-  });
-
-
-  window.filters = filters;
-
-  // ------------------------------------------------------------------------------------
-
   function getRank(apartment) {
     var rank = 0;
 
@@ -218,4 +115,50 @@
     window.debounce(updatePins());
   };
 
+  window.filters.onPriceHouseChange = function (priceOfHouse) {
+    valueOfPriceHouse = priceOfHouse;
+    window.debounce(updatePins());
+  };
+
+  window.filters.onRoomsHouseChange = function (roomsOfHouse) {
+    valueOfRoomNumbers = roomsOfHouse;
+    window.debounce(updatePins());
+  };
+
+  window.filters.onGuestsHouseChange = function (guestsOfHouse) {
+    valueOfRoomNumbers = guestsOfHouse;
+    window.debounce(updatePins());
+  };
+
+  // Features handlers ---------------------------------------
+
+  window.filters.onWiFiFeatureChange = function (wifiOfHouse) {
+    valueWiFiFilter = wifiOfHouse;
+    window.debounce(updatePins());
+  };
+
+  window.filters.onDishwasherFeatureChange = function (dishwasherOfHouse) {
+    valueDishwasherFilter = dishwasherOfHouse;
+    window.debounce(updatePins());
+  };
+
+  window.filters.onParkingFeatureChange = function (parkingOfHouse) {
+    valueParkingFilter = parkingOfHouse;
+    window.debounce(updatePins());
+  };
+
+  window.filters.onWasherFeatureChange = function (washerOfHouse) {
+    valueWasherFilter = washerOfHouse;
+    window.debounce(updatePins());
+  };
+
+  window.filters.onElevatorFeatureChange = function (elevatorOfHouse) {
+    valueElevatorFilter = elevatorOfHouse;
+    window.debounce(updatePins());
+  };
+
+  window.filters.onConditionerFeatureChange = function (conditionerOfHouse) {
+    valueConditionerFilter = conditionerOfHouse;
+    window.debounce(updatePins());
+  };
 })();
