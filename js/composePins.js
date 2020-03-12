@@ -18,6 +18,7 @@
       pin.classList.add('map__pin--active');
     });
   }
+
   // this function removes active state from all over pins
   function iterateOverPins() {
     var pins = map.querySelectorAll('.map__pin');
