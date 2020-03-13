@@ -53,21 +53,31 @@
 
     main.appendChild(containerSuccess);
 
+    // window.onkeydown = function (event) {
+    //   var key = event.key;
+    //
+    //   if (key === 'Escape' || key === 'Esc' || key === 27) {
+    //     alert(key);
+    //     document.querySelector('div.success').remove();
+    //     window.removeEventListener('click', clickOutsideSuccess);
+    //   }
+    //
+    // };
+    window.addEventListener('keydown', pressEscape);
 
-    window.onkeydown = function (event) {
-      if (event.defaultPrevented) {
-        return;
-      }
-
+    function pressEscape(event) {
       var key = event.key;
 
       if (key === 'Escape' || key === 'Esc' || key === 27) {
-        document.querySelector('div.success').remove();
+        alert(key);
+        main.querySelector('div.success').remove();
         window.removeEventListener('click', clickOutsideSuccess);
+        window.removeEventListener('keydown', pressEscape);
       }
-    };
+    }
 
     window.addEventListener('click', clickOutsideSuccess);
   }
+
 
 })();
