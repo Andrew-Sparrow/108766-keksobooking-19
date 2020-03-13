@@ -3,7 +3,7 @@
 (function () {
   var TIMEOUT_IN_MS = 3000; // 3s
 
-  var STATUS_CODE = {
+  var StatusCode = {
     OK: 200,
     badRequest: 400,
     unauthorized: 401,
@@ -28,17 +28,17 @@
       var error;
 
       switch (xhr.status) {
-        case STATUS_CODE.OK:
+        case StatusCode.OK:
           onLoad(xhr.response);
           break;
-        case STATUS_CODE.badRequest:
-          error = STATUS_CODE.badRequest + ' - Неверный запрос';
+        case StatusCode.badRequest:
+          error = StatusCode.badRequest + ' - Неверный запрос';
           break;
-        case STATUS_CODE.unauthorized:
-          error = STATUS_CODE.unauthorized + ' - Пользователь не авторизован';
+        case StatusCode.unauthorized:
+          error = StatusCode.unauthorized + ' - Пользователь не авторизован';
           break;
-        case STATUS_CODE.notFound:
-          error = STATUS_CODE.notFound + ' - Ничего не найдено';
+        case StatusCode.notFound:
+          error = StatusCode.notFound + ' - Ничего не найдено';
           break;
         default:
           error = 'Cтатус ответа: : ' + xhr.status + ' ' + xhr.statusText;

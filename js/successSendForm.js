@@ -55,7 +55,13 @@
 
 
     window.onkeydown = function (event) {
-      if (event.key === 'Escape') {
+      if (event.defaultPrevented) {
+        return;
+      }
+
+      var key = event.key;
+
+      if (key === 'Escape' || key === 'Esc' || key === 27) {
         document.querySelector('div.success').remove();
         window.removeEventListener('click', clickOutsideSuccess);
       }
