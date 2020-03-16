@@ -5,6 +5,7 @@
   var form = document.querySelector('.ad-form');
   var resetButton = form.querySelector('.ad-form__reset');
 
+
   form.addEventListener('submit', function (evt) {
     var formData = new FormData(form);
     var xhr = new XMLHttpRequest();

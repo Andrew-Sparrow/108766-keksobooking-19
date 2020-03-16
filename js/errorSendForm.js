@@ -6,15 +6,15 @@
 
   window.errorSendForm = {
     errorHandler: errorHandler,
-    clickOutside: clickOutside,
   };
 
-  function clickOutside(event) {
+  function clickOutsideError(event) {
     var isClickInside = event.target.firstElementChild.contains(event.target);
 
     if (!isClickInside) {
       event.target.remove();
-      window.removeEventListener('click', clickOutside);
+      // window.removeEventListener('click', clickOutside);
+      event.currentTarget.removeEventListener('click', clickOutsideError);
     }
   }
 
@@ -30,11 +30,11 @@
     window.onkeydown = function (event) {
       if (event.key === 'Escape') {
         document.querySelector('main div.error').remove();
-        window.removeEventListener('click', clickOutside);
+        window.removeEventListener('click', clickOutsideError);
       }
     };
 
-    window.addEventListener('click', clickOutside);
+    window.addEventListener('click', clickOutsideError);
   }
 
 })();

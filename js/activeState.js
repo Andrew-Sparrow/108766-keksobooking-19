@@ -3,9 +3,14 @@
 
   var map = document.querySelector('.map');
   var adForm = document.querySelector('.ad-form');
-  var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
   var mapPinMain = map.querySelector('.map__pin--main');
   var mFilterContainer = document.querySelector('.map__filters-container');
+  var inputs = adForm.getElementsByTagName('input');
+  var selects = adForm.getElementsByTagName('select');
+  var textarea = adForm.querySelector('textarea');
+  var labels = adForm.getElementsByTagName('label');
+  var buttons = adForm.getElementsByTagName('button');
+
 
   window.activeState = {
     toggleFormElements: toggleFormElements,
@@ -26,8 +31,6 @@
     }
   }
 
-  adFormSubmitButton.disabled = true;
-
   function setFormOnActiveState() {
     // verify active state on button to prevent download data by clicking on the button
     if (!mapPinMain.classList.contains('map__pin--mainActive')) {
@@ -41,7 +44,6 @@
 
       var pinElements = map.querySelectorAll('.map__pin--similar');
       window.activeState.pinElements = pinElements;
-
     }
   }
 
@@ -53,22 +55,32 @@
 
   /* code from qodo.co.uk */
   // function disables/activates the elements
+  // function toggleFormElements(isDisabled) {
+  //   var fieldset = adForm.getElementsByTagName('fieldset');
+  //   disableElements(fieldset, isDisabled);
+  //
+  //   var buttons = adForm.getElementsByTagName('button');
+  //
+  //   for (var i = 0; i < buttons.length; i++) {
+  //     buttons[i].disabled = isDisabled;
+  //   }
+  // }
+
   function toggleFormElements(isDisabled) {
-    var inputs = adForm.getElementsByTagName('input');
     disableElements(inputs, isDisabled);
-    var selects = adForm.getElementsByTagName('select');
+
     disableElements(selects, isDisabled);
-    var textareas = adForm.getElementsByTagName('textarea');
-    disableElements(textareas, isDisabled);
-    var buttons = adForm.getElementsByTagName('button');
+
+    textarea.disabled = isDisabled;
+
+    disableElements(labels, isDisabled);
 
     for (var i = 0; i < buttons.length; i++) {
-      buttons[i].disabled = isDisabled;
+      buttons[0].disabled = isDisabled;
     }
 
-    var labels = adForm.getElementsByTagName('label');
-    disableElements(labels, isDisabled);
   }
 
+  // by default all elements are disabled
   toggleFormElements(true);
 })();
