@@ -68,7 +68,6 @@
   function successSendForm() {
 
     var containerSuccess = templateSuccess.cloneNode(true);
-    // var clickOutsideSuccess = window.errorSendForm.clickOutside;
     main.appendChild(containerSuccess);
 
     function pressEscape(event) {
@@ -86,7 +85,6 @@
 
       if (!isClickInside) {
         evt.target.remove();
-        // window.removeEventListener('click', clickOutside);
       }
       window.removeEventListener('click', clickOutsideSuccess);
       window.removeEventListener('keydown', pressEscape);
