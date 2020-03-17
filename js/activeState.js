@@ -53,19 +53,6 @@
     }
   }
 
-  /* code from qodo.co.uk */
-  // function disables/activates the elements
-  // function toggleFormElements(isDisabled) {
-  //   var fieldset = adForm.getElementsByTagName('fieldset');
-  //   disableElements(fieldset, isDisabled);
-  //
-  //   var buttons = adForm.getElementsByTagName('button');
-  //
-  //   for (var i = 0; i < buttons.length; i++) {
-  //     buttons[i].disabled = isDisabled;
-  //   }
-  // }
-
   function toggleFormElements(isDisabled) {
     disableElements(inputs, isDisabled);
 
@@ -76,9 +63,9 @@
     disableElements(labels, isDisabled);
 
     for (var i = 0; i < buttons.length; i++) {
-      buttons[0].disabled = isDisabled;
+      buttons[i].disabled = isDisabled;
+      buttons[0].blur();
     }
-
   }
 
   // by default all elements are disabled

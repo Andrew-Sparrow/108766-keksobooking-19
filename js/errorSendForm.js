@@ -8,13 +8,12 @@
     errorHandler: errorHandler,
   };
 
-  function clickOutsideError(event) {
+  function clickOutside(event) {
     var isClickInside = event.target.firstElementChild.contains(event.target);
 
     if (!isClickInside) {
       event.target.remove();
-      // window.removeEventListener('click', clickOutside);
-      event.currentTarget.removeEventListener('click', clickOutsideError);
+      window.removeEventListener('click', clickOutside);
     }
   }
 
@@ -30,11 +29,11 @@
     window.onkeydown = function (event) {
       if (event.key === 'Escape') {
         document.querySelector('main div.error').remove();
-        window.removeEventListener('click', clickOutsideError);
+        window.removeEventListener('click', clickOutside);
       }
     };
 
-    window.addEventListener('click', clickOutsideError);
+    window.addEventListener('click', clickOutside);
   }
 
 })();

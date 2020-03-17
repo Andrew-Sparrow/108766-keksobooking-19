@@ -7,6 +7,12 @@
   var addressField = document.querySelector('#address');
   var templateSuccess = document.querySelector('#success').content;
 
+  var filtersMap = document.querySelector('.map__filters');
+  var housingType = filtersMap.querySelector('#housing-type');
+  var housingPrice = filtersMap.querySelector('#housing-price');
+  var housingRooms = filtersMap.querySelector('#housing-rooms');
+  var housingGuests = filtersMap.querySelector('#housing-guests');
+
 
   window.successSendForm = {
     setFormInactiveState: setFormInactiveState,
@@ -43,7 +49,12 @@
 
       addressField.setAttribute('value', window.fillAddressField.getPointerCoordinateMainPin());
       adForm.reset();
+      setFilterSelectsToDefaultState();
     }
+  }
+
+  function setFilterSelectsToDefaultState() {
+    housingType.selectedIndex = 0;
   }
 
   function successSendForm() {
@@ -72,8 +83,6 @@
       window.removeEventListener('click', clickOutsideSuccess);
       window.removeEventListener('keydown', pressEscape);
     }
-
-    main.focus();
 
     window.addEventListener('keydown', pressEscape);
     window.addEventListener('click', clickOutsideSuccess);
