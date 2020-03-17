@@ -64,7 +64,7 @@
 
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].disabled = isDisabled;
-      buttons[0].blur();
+      buttons[0].blur(); // blur was added to proper work Esc button in success sending form of popup in FireFox
     }
   }
 

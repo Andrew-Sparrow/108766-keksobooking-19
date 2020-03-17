@@ -8,10 +8,9 @@
   var templateSuccess = document.querySelector('#success').content;
 
   var filtersMap = document.querySelector('.map__filters');
-  var housingType = filtersMap.querySelector('#housing-type');
-  var housingPrice = filtersMap.querySelector('#housing-price');
-  var housingRooms = filtersMap.querySelector('#housing-rooms');
-  var housingGuests = filtersMap.querySelector('#housing-guests');
+  var filterSelects = filtersMap.querySelectorAll('select');
+  var filterCheckboxes = filtersMap.querySelector('#housing-features');
+  var filterFeatures = filterCheckboxes.querySelectorAll('input[type=checkbox]');
 
 
   window.successSendForm = {
@@ -50,11 +49,20 @@
       addressField.setAttribute('value', window.fillAddressField.getPointerCoordinateMainPin());
       adForm.reset();
       setFilterSelectsToDefaultState();
+      setCheckboxHousingFeaturesToUnchecked();
     }
   }
 
   function setFilterSelectsToDefaultState() {
-    housingType.selectedIndex = 0;
+    filterSelects.forEach(function (element) {
+      element.selectedIndex = 0;
+    });
+  }
+
+  function setCheckboxHousingFeaturesToUnchecked() {
+    filterFeatures.forEach(function (element) {
+      element.checked = false;
+    });
   }
 
   function successSendForm() {

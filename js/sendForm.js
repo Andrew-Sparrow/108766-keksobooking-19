@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var URLtoSendForm = 'https://js.dump.academy/keksobooking1';
+  var URLtoSendForm = 'https://js.dump.academy/keksobooking';
   var form = document.querySelector('.ad-form');
   var resetButton = form.querySelector('.ad-form__reset');
 
