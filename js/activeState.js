@@ -5,11 +5,15 @@
   var adForm = document.querySelector('.ad-form');
   var mapPinMain = map.querySelector('.map__pin--main');
   var mFilterContainer = document.querySelector('.map__filters-container');
+
   var inputs = adForm.getElementsByTagName('input');
   var selects = adForm.getElementsByTagName('select');
   var textarea = adForm.querySelector('textarea');
   var labels = adForm.getElementsByTagName('label');
   var buttons = adForm.getElementsByTagName('button');
+
+  var selectsFilter = mFilterContainer.querySelectorAll('select');
+  var checkboxesFilter = mFilterContainer.querySelectorAll('input[type=checkbox]');
 
 
   window.activeState = {
@@ -61,11 +65,10 @@
     textarea.disabled = isDisabled;
 
     disableElements(labels, isDisabled);
+    disableElements(buttons, isDisabled);
 
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].disabled = isDisabled;
-      buttons[0].blur(); // blur was added to proper work Esc button in success sending form of popup in FireFox
-    }
+    disableElements(selectsFilter, isDisabled);
+    disableElements(checkboxesFilter, isDisabled);
   }
 
   // by default all elements are disabled
