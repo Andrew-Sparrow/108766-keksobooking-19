@@ -48,21 +48,7 @@
 
       addressField.setAttribute('value', window.fillAddressField.getPointerCoordinateMainPin());
       adForm.reset();
-      setFilterSelectsToDefaultState();
-      setCheckboxHousingFeaturesToUnchecked();
     }
-  }
-
-  function setFilterSelectsToDefaultState() {
-    filterSelects.forEach(function (element) {
-      element.selectedIndex = 0;
-    });
-  }
-
-  function setCheckboxHousingFeaturesToUnchecked() {
-    filterFeatures.forEach(function (element) {
-      element.checked = false;
-    });
   }
 
   function successSendForm() {
