@@ -8,11 +8,11 @@
     errorHandler: errorHandler,
   };
 
-  function clickOutside(event) {
-    var isClickInside = event.target.firstElementChild.contains(event.target);
+  function clickOutside(evt) {
+    var isClickInside = evt.target.firstElementChild.contains(evt.target);
 
     if (!isClickInside) {
-      event.target.remove();
+      document.querySelector('main div.error').remove();
       window.removeEventListener('click', clickOutside);
     }
   }
@@ -26,12 +26,12 @@
       document.querySelector('main div.error').remove();
     };
 
-    window.onkeydown = function (event) {
-      if (event.key === 'Escape') {
+    window.addEventListener('keydown', function (evt) {
+      if (evt.key === 'Escape') {
         document.querySelector('main div.error').remove();
         window.removeEventListener('click', clickOutside);
       }
-    };
+    });
 
     window.addEventListener('click', clickOutside);
   }

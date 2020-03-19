@@ -1,11 +1,17 @@
 'use strict';
 (function () {
+  var DEFAULT_PRICE_PLACE_HOLDER = 1000;
+  var DEFAULT_SRC_IMG = 'img/muffin-grey.svg';
+
   var main = document.querySelector('main');
   var map = document.querySelector('.map');
   var mapPinMain = map.querySelector('.map__pin--main');
   var adForm = document.querySelector('.ad-form');
+  var price = adForm.querySelector('#price');
   var addressField = document.querySelector('#address');
   var templateSuccess = document.querySelector('#success').content;
+  var avatarPreview = document.querySelector('.ad-form-header__preview img');
+  var homePreview = document.querySelector('.ad-form__photo img');
 
 
   window.successSendForm = {
@@ -28,6 +34,10 @@
       window.composePins.generatePins(window.composeAds.ads);
 
       window.activeState.toggleFormElements(true);
+      price.placeholder = DEFAULT_PRICE_PLACE_HOLDER;
+      avatarPreview.src = DEFAULT_SRC_IMG;
+      homePreview.src = DEFAULT_SRC_IMG;
+
       mapCard.remove();
       mapPinMain.blur();
 
@@ -46,36 +56,35 @@
     }
   }
 
+  function pressEscape(evt) {
+    var key = evt.key;
+
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+      window.removeEventListener('click', clickOutsideSuccess);
+      window.removeEventListener('keydown', pressEscape);
+      main.querySelector('div.success').remove();
+    }
+  }
+
+  function clickOutsideSuccess(evt) {
+    var isClickInside = evt.target.firstElementChild.contains(evt.target);
+
+    if (!isClickInside) {
+      main.querySelector('div.success').remove();
+      window.removeEventListener('click', clickOutsideSuccess);
+      window.removeEventListener('keydown', pressEscape);
+    }
+  }
+
   function successSendForm() {
 
     var containerSuccess = templateSuccess.cloneNode(true);
     main.appendChild(containerSuccess);
-
-    function pressEscape(event) {
-      var key = event.key;
-
-      if (key === 'Escape' || key === 'Esc' || key === 27) {
-        window.removeEventListener('click', clickOutsideSuccess);
-        window.removeEventListener('keydown', pressEscape);
-        main.querySelector('div.success').remove();
-      }
-    }
-
-    function clickOutsideSuccess(evt) {
-      var isClickInside = evt.target.firstElementChild.contains(evt.target);
-
-      if (!isClickInside) {
-        evt.target.remove();
-      }
-      window.removeEventListener('click', clickOutsideSuccess);
-      window.removeEventListener('keydown', pressEscape);
-    }
 
     window.addEventListener('keydown', pressEscape);
     window.addEventListener('click', clickOutsideSuccess);
 
     setFormInactiveState();
   }
-
 
 })();
