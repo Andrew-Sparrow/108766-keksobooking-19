@@ -7,11 +7,6 @@
   var addressField = document.querySelector('#address');
   var templateSuccess = document.querySelector('#success').content;
 
-  var filtersMap = document.querySelector('.map__filters');
-  var filterSelects = filtersMap.querySelectorAll('select');
-  var filterCheckboxes = filtersMap.querySelector('#housing-features');
-  var filterFeatures = filterCheckboxes.querySelectorAll('input[type=checkbox]');
-
 
   window.successSendForm = {
     setFormInactiveState: setFormInactiveState,
