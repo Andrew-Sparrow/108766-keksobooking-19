@@ -6,11 +6,11 @@
   var mapPinMain = map.querySelector('.map__pin--main');
   var mFilterContainer = document.querySelector('.map__filters-container');
 
-  var inputs = adForm.getElementsByTagName('input');
-  var selects = adForm.getElementsByTagName('select');
+  var inputs = adForm.querySelectorAll('input');
+  var selects = adForm.querySelectorAll('select');
   var textarea = adForm.querySelector('textarea');
-  var labels = adForm.getElementsByTagName('label');
-  var buttons = adForm.getElementsByTagName('button');
+  var labels = adForm.querySelectorAll('label');
+  var buttons = adForm.querySelectorAll('button');
 
   var selectsFilter = mFilterContainer.querySelectorAll('select');
   var checkboxesFilter = mFilterContainer.querySelectorAll('input[type=checkbox]');
@@ -52,9 +52,9 @@
   }
 
   function disableElements(elements, isDisabled) {
-    for (var i = 0; i < elements.length; i++) {
-      elements[i].disabled = isDisabled;
-    }
+    elements.forEach(function (item) {
+      item.disabled = isDisabled;
+    });
   }
 
   function toggleFormElements(isDisabled) {
