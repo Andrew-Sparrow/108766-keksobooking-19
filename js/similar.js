@@ -82,7 +82,7 @@
 
   function successHandler(data) {
     houses = data;
-    window.composeAds.generateAds(houses);
+    window.compose.generateAds(houses);
   }
 
   function sorting(places) {
@@ -107,7 +107,7 @@
       el.remove();
     });
 
-    window.composePins.generatePins(sorting(houses));
+    window.compose.generatePins(sorting(houses));
   }
 
   window.filters.onTypeHouseChange = function (typeOfHouse) {

@@ -2,7 +2,7 @@
 (function () {
   var cardTemplate = document.querySelector('#card').content;
 
-  window.popupCard = {
+  window.popup = {
     createCardTemplate: createCardTemplate,
   };
 

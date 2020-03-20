@@ -2,16 +2,16 @@
 
 (function () {
 
-  var map = document.querySelector('.map');
-  var mapPinMain = map.querySelector('.map__pin--main');
-  var mapWidth = map.offsetWidth;
-  var addressField = document.querySelector('#address');
-
   var MIN_X = 0 - window.WIDTH_MAIN_PIN / 2;
-  var MAX_X = mapWidth - window.WIDTH_MAIN_PIN / 2;
+  var MAX_X = document.querySelector('.map').offsetWidth - window.WIDTH_MAIN_PIN / 2;
 
   var MIN_Y = 130;
   var MAX_Y = 630;
+
+  var map = document.querySelector('.map');
+  var mapPinMain = map.querySelector('.map__pin--main');
+  var addressField = document.querySelector('#address');
+
 
   function onMouseDown(evt) {
     evt.preventDefault();

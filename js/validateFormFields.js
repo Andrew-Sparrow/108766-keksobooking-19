@@ -1,7 +1,6 @@
 'use strict';
 (function () {
-  var adForm = document.querySelector('.ad-form');
-  var price = adForm.querySelector('#price');
+
   var minimalPriceForNight = 1000;
   var MINIMAL_PRICE_FOR_BUNGALOW = 0;
   var MINIMAL_PRICE_FOR_FLAT = 1000;
@@ -10,6 +9,10 @@
   var MAXIMAL_PRICE = 1000000;
   var MINIMAL_LENGTH_OF_TEXT_FIELD = 30;
   var MAXIMAL_LENGTH_OF_TEXT_FIELD = 100;
+
+  var adForm = document.querySelector('.ad-form');
+  var price = adForm.querySelector('#price');
+
   var adFormSubmitButton = adForm.querySelector('.ad-form__submit');
   var title = adForm.querySelector('#title');
   var typeHousing = adForm.querySelector('#type');

@@ -31,7 +31,7 @@
       mapPinMain.classList.remove('map__pin--mainActive');
       map.classList.add('map--faded');
       adForm.classList.add('ad-form--disabled');
-      window.composePins.generatePins(window.composeAds.ads);
+      window.compose.generatePins(window.compose.ads);
 
       window.activeState.toggleFormElements(true);
       price.placeholder = DEFAULT_PRICE_PLACE_HOLDER;

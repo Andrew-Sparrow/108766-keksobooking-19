@@ -6,9 +6,7 @@
   var pinTemplate = document.querySelector('#pin').content;
   var map = document.querySelector('.map');
 
-  window.composePins = {
-    generatePins: generatePins
-  };
+  window.compose.generatePins = generatePins;
 
   // this function made for closures
   function pinListener(pin, index, ads) {

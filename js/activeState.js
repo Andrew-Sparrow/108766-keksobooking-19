@@ -41,9 +41,9 @@
       map.classList.remove('map--faded');
       adForm.classList.remove('ad-form--disabled');
       mapPinMain.classList.add('map__pin--mainActive');
-      window.composePins.generatePins(window.composeAds.ads);
+      window.compose.generatePins(window.compose.ads);
       toggleFormElements(false);
-      mFilterContainer.insertAdjacentElement('beforebegin', window.popupCard.createCardTemplate());
+      mFilterContainer.insertAdjacentElement('beforebegin', window.popup.createCardTemplate());
       mapPinMain.blur();
 
       var pinElements = map.querySelectorAll('.map__pin--similar');

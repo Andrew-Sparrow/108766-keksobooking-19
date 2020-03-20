@@ -1,6 +1,7 @@
 'use strict';
 (function () {
   var MILLISECONDS = 100;
+
   var map = document.querySelector('.map');
   var photoTemplate = document.querySelector('#card').content;
   var clonePhotoTemplate = photoTemplate.cloneNode(true);

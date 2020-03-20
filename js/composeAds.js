@@ -4,13 +4,13 @@
 
   var ads = [];
 
-  window.composeAds = {
+  window.compose = {
     ads: ads,
     generateAds: generateAds
   };
 
   function generateAds(arrayFromServer) {
-    window.composeAds.ads = arrayFromServer;
+    window.compose.ads = arrayFromServer;
   }
 
 })();
