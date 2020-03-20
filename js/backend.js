@@ -5,16 +5,18 @@
 
   var StatusCode = {
     OK: 200,
-    badRequest: 400,
-    unauthorized: 401,
-    notFound: 404
+    BAD_REQUEST: 400,
+    UNAUTHORIZED: 401,
+    NOT_FOUND: 404
   };
 
   var URL = 'https://js.dump.academy/keksobooking/data';
 
   window.backend = {
     load: load,
-    errorHandler: errorHandler
+    errorHandler: errorHandler,
+    TIMEOUT_IN_MS: TIMEOUT_IN_MS,
+    statusCode: StatusCode,
   };
 
   function load(onLoad, onError) {
@@ -31,14 +33,14 @@
         case StatusCode.OK:
           onLoad(xhr.response);
           break;
-        case StatusCode.badRequest:
-          error = StatusCode.badRequest + ' - Неверный запрос';
+        case StatusCode.BAD_REQUEST:
+          error = StatusCode.BAD_REQUEST + ' - Неверный запрос';
           break;
-        case StatusCode.unauthorized:
-          error = StatusCode.unauthorized + ' - Пользователь не авторизован';
+        case StatusCode.UNAUTHORIZED:
+          error = StatusCode.UNAUTHORIZED + ' - Пользователь не авторизован';
           break;
-        case StatusCode.notFound:
-          error = StatusCode.notFound + ' - Ничего не найдено';
+        case StatusCode.NOT_FOUND:
+          error = StatusCode.NOT_FOUND + ' - Ничего не найдено';
           break;
         default:
           error = 'Cтатус ответа: : ' + xhr.status + ' ' + xhr.statusText;

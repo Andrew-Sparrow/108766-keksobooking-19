@@ -12,14 +12,25 @@
 
     xhr.open('POST', URLtoSendForm, true);
 
-    xhr.onload = function () {
+    xhr.addEventListener('load', function () {
 
       if (xhr.status === 200 && xhr.readyState === 4) {
         window.successSendForm.successSendForm();
       } else {
         window.errorSendForm.errorHandler();
       }
-    };
+    });
+
+    xhr.addEventListener('error', function () {
+      window.errorSendForm.errorHandler();
+    });
+
+    xhr.timeout = window.backend.TIMEOUT_IN_MS;
+
+    xhr.addEventListener('timeout', function () {
+      window.errorSendForm.errorHandler();
+    });
+
     xhr.send(formData);
     evt.preventDefault();
 
