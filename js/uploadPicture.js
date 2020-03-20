@@ -21,16 +21,20 @@
       var file = inputPicture.files[0];
       var fileName = file.name.toLowerCase();
 
-      if (isMatchesFileType(fileName)) {
-        var reader = new FileReader();
+      if (fileName.length > 0) {
+        if (isMatchesFileType(fileName)) {
+          var reader = new FileReader();
 
-        reader.addEventListener('load', function () {
-          preview.src = reader.result;
-        });
+          reader.addEventListener('load', function () {
+            preview.src = reader.result;
+          });
 
-        reader.readAsDataURL(file);
-      } else {
-        window.validateFormFields.setErrorState(inputPicture, 'файлом может быть только изображение');
+          reader.readAsDataURL(file);
+          window.validateFormFields.removeDisable(inputPicture);
+        } else {
+          inputPicture.value = '';
+          window.validateFormFields.setErrorState(inputPicture, 'файлом может быть только изображение');
+        }
       }
     });
   }

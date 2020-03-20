@@ -14,6 +14,17 @@
     if (!isClickInside) {
       document.querySelector('main div.error').remove();
       window.removeEventListener('click', clickOutside);
+      window.removeEventListener('click', pressEscapeError);
+    }
+  }
+
+  function pressEscapeError(evt) {
+    var key = evt.key;
+
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+      window.removeEventListener('click', clickOutside);
+      window.removeEventListener('keydown', pressEscapeError);
+      main.querySelector('div.error').remove();
     }
   }
 
