@@ -56,6 +56,16 @@
     }
   }
 
+  function clickOutsideSuccess(evt) {
+    var isClickOutside = evt.target.contains(main.querySelector('div.success'));
+
+    if (isClickOutside) {
+      main.querySelector('div.success').remove();
+      window.removeEventListener('click', clickOutsideSuccess);
+      window.removeEventListener('keydown', pressEscape);
+    }
+  }
+
   function pressEscape(evt) {
     var key = evt.key;
 
@@ -63,16 +73,6 @@
       window.removeEventListener('click', clickOutsideSuccess);
       window.removeEventListener('keydown', pressEscape);
       main.querySelector('div.success').remove();
-    }
-  }
-
-  function clickOutsideSuccess(evt) {
-    var isClickInside = evt.target.firstElementChild.contains(evt.target);
-
-    if (!isClickInside) {
-      main.querySelector('div.success').remove();
-      window.removeEventListener('click', clickOutsideSuccess);
-      window.removeEventListener('keydown', pressEscape);
     }
   }
 

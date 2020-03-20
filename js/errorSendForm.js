@@ -8,12 +8,12 @@
     errorHandler: errorHandler,
   };
 
-  function clickOutside(evt) {
-    var isClickInside = evt.target.firstElementChild.contains(evt.target);
+  function clickOutsideError(evt) {
+    var isClickOutside = evt.target.contains(evt.target.firstElementChild);
 
-    if (!isClickInside) {
+    if (isClickOutside) {
       document.querySelector('main div.error').remove();
-      window.removeEventListener('click', clickOutside);
+      window.removeEventListener('click', clickOutsideError);
       window.removeEventListener('click', pressEscapeError);
     }
   }
@@ -22,13 +22,14 @@
     var key = evt.key;
 
     if (key === 'Escape' || key === 'Esc' || key === 27) {
-      window.removeEventListener('click', clickOutside);
+      window.removeEventListener('click', clickOutsideError);
       window.removeEventListener('keydown', pressEscapeError);
       main.querySelector('div.error').remove();
     }
   }
 
   function errorHandler() {
+
     var containerError = templateError.cloneNode(true);
     var errorButton = containerError.querySelector('.error__button');
     main.appendChild(containerError);
@@ -37,14 +38,8 @@
       document.querySelector('main div.error').remove();
     };
 
-    window.addEventListener('keydown', function (evt) {
-      if (evt.key === 'Escape') {
-        document.querySelector('main div.error').remove();
-        window.removeEventListener('click', clickOutside);
-      }
-    });
-
-    window.addEventListener('click', clickOutside);
+    window.addEventListener('keydown', pressEscapeError);
+    window.addEventListener('click', clickOutsideError);
   }
 
 })();

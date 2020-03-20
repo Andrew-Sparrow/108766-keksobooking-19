@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var TIMEOUT_SEND_FORM = 3000; // ms
   var URLtoSendForm = 'https://js.dump.academy/keksobooking';
   var form = document.querySelector('.ad-form');
   var resetButton = form.querySelector('.ad-form__reset');
@@ -25,7 +26,7 @@
       window.errorSendForm.errorHandler();
     });
 
-    xhr.timeout = window.backend.TIMEOUT_IN_MS;
+    xhr.timeout = TIMEOUT_SEND_FORM;
 
     xhr.addEventListener('timeout', function () {
       window.errorSendForm.errorHandler();
