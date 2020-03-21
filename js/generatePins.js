@@ -33,7 +33,7 @@
 
     for (var i = 0; i < MAX_PINS_NUM; i++) {
       // verify if add has offer property
-      if (ads[i].offer !== undefined) {
+      if (ads[i].offer !== undefined) {q
         var pinContainer = pinTemplate.cloneNode(true);
         var pin = pinContainer.querySelector('.map__pin');
         var pinImg = pin.querySelector('img');
