@@ -10,6 +10,8 @@
   function checkboxListener(checkbox) {
 
     function pressEnter(evt) {
+      // evt.preventDefault();
+
       if (evt.key === 'Enter') {
         if (checkbox.checked === false) {
           checkbox.checked = true;
