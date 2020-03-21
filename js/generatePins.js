@@ -11,9 +11,22 @@
   // this function made for closures
   function pinListener(pin, index, ads) {
     pin.addEventListener('click', function () {
+      var popup = map.querySelector('.popup');
+
       window.fillPopupByData(index, ads);
       iterateOverPins();
       pin.classList.add('map__pin--active');
+
+      function pressEscToCloseCard(evt) {
+        var key = evt.key;
+
+        if (key === 'Escape' || key === 'Esc' || key === 27) {
+          window.removeEventListener('keydown', pressEscToCloseCard);
+          popup.style = 'display: none';
+        }
+      }
+
+      window.addEventListener('keydown', pressEscToCloseCard);
     });
   }
 

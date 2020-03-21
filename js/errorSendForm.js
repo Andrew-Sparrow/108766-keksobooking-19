@@ -34,9 +34,9 @@
     var errorButton = containerError.querySelector('.error__button');
     main.appendChild(containerError);
 
-    errorButton.onclick = function () {
+    errorButton.addEventListener('click', function () {
       document.querySelector('main div.error').remove();
-    };
+    });
 
     window.addEventListener('keydown', pressEscapeError);
     window.addEventListener('click', clickOutsideError);

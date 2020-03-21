@@ -122,7 +122,6 @@
       });
     }
 
-
     var filteredPins = filterPinsByType();
     filteredPins = filterPinsByPrice(filteredPins);
     filteredPins = filterByRoomNumber(filteredPins);
@@ -165,7 +164,7 @@
   };
 
   window.filters.onGuestsHouseChange = function (guestsOfHouse) {
-    valueOfRoomNumbers = guestsOfHouse;
+    valueOfGuestsNumbers = guestsOfHouse;
     window.debounce(updatePins());
   };
 
@@ -173,7 +172,6 @@
 
   window.filters.onWiFiFeatureChange = function (wifiOfHouse) {
     valueWiFiFilter = wifiOfHouse;
-    console.log(valueWiFiFilter);
     window.debounce(updatePins());
   };
 

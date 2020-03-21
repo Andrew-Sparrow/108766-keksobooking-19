@@ -1,6 +1,5 @@
 'use strict';
 (function () {
-  var MILLISECONDS = 100;
 
   var map = document.querySelector('.map');
   var photoTemplate = document.querySelector('#card').content;
@@ -44,14 +43,8 @@
     function (index, dwellings) {
       var offers = dwellings;
       var popup = map.querySelector('.popup');
-      var popupClose = popup.querySelector('.popup__close');
       var features = popup.querySelector('.popup__features');
       var photos = popup.querySelector('.popup__photos');
-
-      // setting closing button on card to default focus;
-      setTimeout(function () {
-        // popupClose.focus();
-      }, MILLISECONDS);
 
       popup.querySelector('.popup__title').innerText = offers[index].offer.title;
 
