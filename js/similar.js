@@ -16,90 +16,27 @@
   var conditionerHousingFilter = document.querySelector('#filter-conditioner');
 
   var houses = [];
+
   var valueOfTypeHouse = typeHousingFilter.options[typeHousingFilter.selectedIndex].value;
   var valueOfPriceHouse = priceHousingFilter.options[priceHousingFilter.selectedIndex].value;
   var valueOfRoomNumbers = roomsHousingFilter.options[roomsHousingFilter.selectedIndex].value;
   var valueOfGuestsNumbers = guestsHousingFilter.options[guestsHousingFilter.selectedIndex].value;
 
-  var valueWiFiFilter = null;
-  var valueDishwasherFilter = null;
-  var valueParkingFilter = null;
-  var valueWasherFilter = null;
-  var valueElevatorFilter = null;
-  var valueConditionerFilter = null;
+  var valueWiFiFilter = wifiHousingFilter.value;
+  var valueDishwasherFilter = dishwasherHousingFilter.value;
+  var valueParkingFilter = parkingHousingFilter.value;
+  var valueWasherFilter = washerHousingFilter.value;
+  var valueElevatorFilter = elevatorHousingFilter.value;
+  var valueConditionerFilter = conditionerHousingFilter.value;
 
 
   window.backend.load(successHandler, window.backend.errorHandler);
-/*
-  function getRank(apartment) {
-    var rank = 0;
 
-    if (valueOfTypeHouse === apartment.offer.type) {
-      rank += 1;
-    }
-    if (valueOfPriceHouse === 'middle') {
-      if (apartment.offer.price >= 10000 && apartment.offer.price <= 50000) {
-        rank += 1;
-      }
-    }
-    if (valueOfPriceHouse === 'low') {
-      if (apartment.offer.price < 10000) {
-        rank += 1;
-      }
-    }
-    if (valueOfPriceHouse === 'high') {
-      if (apartment.offer.price > 50000) {
-        rank += 1;
-      }
-    }
-
-    if (+valueOfRoomNumbers === apartment.offer.rooms) {
-      rank += 1;
-    }
-
-    if (+valueOfGuestsNumbers === apartment.offer.guests) {
-      rank += 1;
-    }
-
-    if (apartment.offer.features.includes(valueWiFiFilter) && wifiHousingFilter.checked) {
-      rank += 1;
-    }
-    if (apartment.offer.features.includes(valueDishwasherFilter) && dishwasherHousingFilter.checked) {
-      rank += 1;
-    }
-    if (apartment.offer.features.includes(valueParkingFilter) && parkingHousingFilter.checked) {
-      rank += 1;
-    }
-    if (apartment.offer.features.includes(valueWasherFilter) && washerHousingFilter.checked) {
-      rank += 1;
-    }
-    if (apartment.offer.features.includes(valueElevatorFilter) && elevatorHousingFilter.checked) {
-      rank += 1;
-    }
-    if (apartment.offer.features.includes(valueConditionerFilter) && conditionerHousingFilter.checked) {
-      rank += 1;
-    }
-
-    return rank;
-  }*/
 
   function successHandler(data) {
     houses = data;
     window.compose.generateAds(houses);
   }
-
-/*  function sorting(places) {
-    var sortedPlaces = places.slice().sort(function (right, left) {
-
-      var rankDiff = getRank(left) - getRank(right);
-      if (rankDiff === 0) {
-        rankDiff = places.indexOf(left) - places.indexOf(right);
-      }
-      return rankDiff;
-    });
-
-    return sortedPlaces;
-  }*/
 
   function filterPins() {
 
@@ -159,22 +96,44 @@
 
     function filterByGuests(pins) {
       return pins.filter(function (item) {
-        var isInRangeRoom = false;
+        var isInRangeGuests = false;
 
         if (valueOfGuestsNumbers === 'any') {
-          isInRangeRoom = true;
+          isInRangeGuests = true;
         }
         if (+valueOfGuestsNumbers === item.offer.guests) {
-          isInRangeRoom = true;
+          isInRangeGuests = true;
         }
-        return isInRangeRoom;
+        return isInRangeGuests;
       });
     }
+
+    function filterByFeatures(pins, housingFilter, valueFilter) {
+      return pins.filter(function (item) {
+        var isInRange = false;
+
+        if (!housingFilter.checked) {
+          isInRange = true;
+        }
+        if (item.offer.features.includes(valueFilter) && housingFilter.checked) {
+          isInRange = true;
+        }
+        return isInRange;
+      });
+    }
+
 
     var filteredPins = filterPinsByType();
     filteredPins = filterPinsByPrice(filteredPins);
     filteredPins = filterByRoomNumber(filteredPins);
     filteredPins = filterByGuests(filteredPins);
+
+    filteredPins = filterByFeatures(filteredPins, wifiHousingFilter, valueWiFiFilter);
+    filteredPins = filterByFeatures(filteredPins, dishwasherHousingFilter, valueDishwasherFilter);
+    filteredPins = filterByFeatures(filteredPins, parkingHousingFilter, valueParkingFilter);
+    filteredPins = filterByFeatures(filteredPins, washerHousingFilter, valueWasherFilter);
+    filteredPins = filterByFeatures(filteredPins, elevatorHousingFilter, valueElevatorFilter);
+    filteredPins = filterByFeatures(filteredPins, conditionerHousingFilter, valueConditionerFilter);
 
     return filteredPins;
   }
@@ -214,6 +173,7 @@
 
   window.filters.onWiFiFeatureChange = function (wifiOfHouse) {
     valueWiFiFilter = wifiOfHouse;
+    console.log(valueWiFiFilter);
     window.debounce(updatePins());
   };
 

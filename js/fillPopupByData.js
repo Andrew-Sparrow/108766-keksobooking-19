@@ -50,7 +50,7 @@
 
       // setting closing button on card to default focus;
       setTimeout(function () {
-        popupClose.focus();
+        // popupClose.focus();
       }, MILLISECONDS);
 
       popup.querySelector('.popup__title').innerText = offers[index].offer.title;

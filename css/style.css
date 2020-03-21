@@ -178,10 +178,11 @@ fieldset {
   background: none;
 }
 
-.map__pin:focus {
+.map__pin:focus,
+.map__pin:focus img {
   outline: none;
-  -webkit-filter: drop-shadow(0 0 5px red);
-          filter: drop-shadow(0 0 5px red);
+  -webkit-filter: drop-shadow(0 0 15px red);
+          filter: drop-shadow(0 0 15px red);
 }
 
 .map__pin img {
