@@ -5,9 +5,10 @@
   var URLtoSendForm = 'https://js.dump.academy/keksobooking';
   var form = document.querySelector('.ad-form');
   var resetButton = form.querySelector('.ad-form__reset');
+  var submitButton = form.querySelector('.ad-form__submit');
 
-
-  form.addEventListener('submit', function (evt) {
+  submitButton.addEventListener('click', function (evt) {
+    evt.preventDefault();
     var formData = new FormData(form);
     var xhr = new XMLHttpRequest();
 
