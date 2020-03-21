@@ -31,9 +31,11 @@
   function generatePins(ads) {
     var fragment = new DocumentFragment();
 
-    for (var i = 0; i < MAX_PINS_NUM; i++) {
+    var lengthIteration = ads.length > MAX_PINS_NUM ? MAX_PINS_NUM : ads.length;
+
+    for (var i = 0; i < lengthIteration; i++) {
       // verify if add has offer property
-      if (ads[i].offer !== undefined) {q
+      if (ads[i].offer !== undefined) {
         var pinContainer = pinTemplate.cloneNode(true);
         var pin = pinContainer.querySelector('.map__pin');
         var pinImg = pin.querySelector('img');
