@@ -106,7 +106,6 @@
     pinButtons.forEach(function (el) {
       el.remove();
     });
-
     window.compose.generatePins(sorting(houses));
   }
 

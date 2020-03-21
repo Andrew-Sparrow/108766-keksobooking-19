@@ -15,8 +15,6 @@
   window.backend = {
     load: load,
     errorHandler: errorHandler,
-    TIMEOUT_IN_MS: TIMEOUT_IN_MS,
-    statusCode: StatusCode,
   };
 
   function load(onLoad, onError) {
