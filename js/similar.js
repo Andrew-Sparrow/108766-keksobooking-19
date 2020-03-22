@@ -145,7 +145,7 @@
     pinButtons.forEach(function (el) {
       el.remove();
     });
-    window.compose.generatePins(filterPins());
+    window.generate.generatePins(filterPins());
   }
 
   window.filters.onTypeHouseChange = window.debounce(function (typeOfHouse) {

@@ -41,7 +41,7 @@
       map.classList.remove('map--faded');
       adForm.classList.remove('ad-form--disabled');
       mapPinMain.classList.add('map__pin--mainActive');
-      window.compose.generatePins(window.compose.ads);
+      window.generate.generatePins(window.compose.ads);
       toggleFormElements(false);
       mFilterContainer.insertAdjacentElement('beforebegin', window.popup.createCardTemplate());
       mapPinMain.blur();
