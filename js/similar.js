@@ -148,55 +148,55 @@
     window.compose.generatePins(filterPins());
   }
 
-  window.filters.onTypeHouseChange = function (typeOfHouse) {
+  window.filters.onTypeHouseChange = window.debounce(function (typeOfHouse) {
     valueOfTypeHouse = typeOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onPriceHouseChange = function (priceOfHouse) {
+  window.filters.onPriceHouseChange = window.debounce(function (priceOfHouse) {
     valueOfPriceHouse = priceOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onRoomsHouseChange = function (roomsOfHouse) {
+  window.filters.onRoomsHouseChange = window.debounce(function (roomsOfHouse) {
     valueOfRoomNumbers = roomsOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onGuestsHouseChange = function (guestsOfHouse) {
+  window.filters.onGuestsHouseChange = window.debounce(function (guestsOfHouse) {
     valueOfGuestsNumbers = guestsOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
   // Features handlers ------------------------------------
 
-  window.filters.onWiFiFeatureChange = function (wifiOfHouse) {
+  window.filters.onWiFiFeatureChange = window.debounce(function (wifiOfHouse) {
     valueWiFiFilter = wifiOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onDishwasherFeatureChange = function (dishwasherOfHouse) {
+  window.filters.onDishwasherFeatureChange = window.debounce(function (dishwasherOfHouse) {
     valueDishwasherFilter = dishwasherOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onParkingFeatureChange = function (parkingOfHouse) {
+  window.filters.onParkingFeatureChange = window.debounce(function (parkingOfHouse) {
     valueParkingFilter = parkingOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onWasherFeatureChange = function (washerOfHouse) {
+  window.filters.onWasherFeatureChange = window.debounce(function (washerOfHouse) {
     valueWasherFilter = washerOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onElevatorFeatureChange = function (elevatorOfHouse) {
+  window.filters.onElevatorFeatureChange = window.debounce(function (elevatorOfHouse) {
     valueElevatorFilter = elevatorOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 
-  window.filters.onConditionerFeatureChange = function (conditionerOfHouse) {
+  window.filters.onConditionerFeatureChange = window.debounce(function (conditionerOfHouse) {
     valueConditionerFilter = conditionerOfHouse;
-    window.debounce(updatePins());
-  };
+    updatePins();
+  });
 })();
