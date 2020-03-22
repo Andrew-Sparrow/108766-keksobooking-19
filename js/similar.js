@@ -30,10 +30,10 @@
   var valueConditionerFilter = conditionerHousingFilter.value;
 
 
-  window.backend.load(successHandler, window.backend.errorHandler);
+  window.backend.load(onSuccess, window.backend.onError);
 
 
-  function successHandler(data) {
+  function onSuccess(data) {
     houses = data;
     window.compose.generateAds(houses);
   }

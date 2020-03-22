@@ -2,7 +2,7 @@
 
 (function () {
   var TIMEOUT_SEND_FORM = 3000; // ms
-  var URLtoSendForm = 'https://js.dump.academy/keksobooking1';
+  var URLtoSendForm = 'https://js.dump.academy/keksobooking';
   var form = document.querySelector('.ad-form');
   var resetButton = form.querySelector('.ad-form__reset');
 
@@ -17,18 +17,18 @@
       if (xhr.status === 200 && xhr.readyState === 4) {
         window.successSendForm.successSendForm();
       } else {
-        window.errorSendForm.errorHandler();
+        window.errorSendForm.onError();
       }
     });
 
     xhr.addEventListener('error', function () {
-      window.errorSendForm.errorHandler();
+      window.errorSendForm.onError();
     });
 
     xhr.timeout = TIMEOUT_SEND_FORM;
 
     xhr.addEventListener('timeout', function () {
-      window.errorSendForm.errorHandler();
+      window.errorSendForm.onError();
     });
 
     xhr.send(formData);

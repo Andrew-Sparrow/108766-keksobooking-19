@@ -5,7 +5,7 @@
   var main = document.querySelector('main');
 
   window.errorSendForm = {
-    errorHandler: errorHandler,
+    onError: onError,
   };
 
   function clickOutsideError(evt) {
@@ -28,7 +28,7 @@
     }
   }
 
-  function errorHandler() {
+  function onError() {
 
     var containerError = templateError.cloneNode(true);
     var errorButton = containerError.querySelector('.error__button');

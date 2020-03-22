@@ -14,7 +14,7 @@
 
   window.backend = {
     load: load,
-    errorHandler: errorHandler,
+    onError: onErrorMessage,
   };
 
   function load(onLoad, onError) {
@@ -61,7 +61,7 @@
     xhr.send();
   }
 
-  function errorHandler(errorMessage) {
+  function onErrorMessage(errorMessage) {
     var node = document.createElement('div');
     node.style =
       'z-index: 100;' +
