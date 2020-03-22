@@ -14,7 +14,7 @@
     if (isClickOutside) {
       document.querySelector('main div.error').remove();
       window.removeEventListener('click', clickOutsideError);
-      window.removeEventListener('click', pressEscapeError);
+      window.removeEventListener('keydown', pressEscapeError);
     }
   }
 
@@ -22,9 +22,9 @@
     var key = evt.key;
 
     if (key === 'Escape' || key === 'Esc' || key === 27) {
+      main.querySelector('div.error').remove();
       window.removeEventListener('click', clickOutsideError);
       window.removeEventListener('keydown', pressEscapeError);
-      main.querySelector('div.error').remove();
     }
   }
 

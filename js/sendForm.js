@@ -2,7 +2,7 @@
 
 (function () {
   var TIMEOUT_SEND_FORM = 3000; // ms
-  var URLtoSendForm = 'https://js.dump.academy/keksobooking';
+  var URLtoSendForm = 'https://js.dump.academy/keksobooking1';
   var form = document.querySelector('.ad-form');
   var resetButton = form.querySelector('.ad-form__reset');
 
