@@ -1,4 +1,4 @@
-# Personal training project «Cake booking» [![Build status][travis-image]][travis-url]
+# Personal training project «Apartment booking» [![Build status][travis-image]][travis-url]
 
 * Student: [Andrew Pecherskih](https://up.htmlacademy.ru/javascript/19/user/108766).
 
