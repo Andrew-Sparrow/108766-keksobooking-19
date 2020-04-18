@@ -10,7 +10,7 @@
     NOT_FOUND: 404
   };
 
-  var URL = 'https://js.dump.academy/keksobooking/data';
+  var URL = 'https://cors-anywhere.herokuapp.com/https://js.dump.academy/keksobooking/data';
 
   window.backend = {
     load: load,
