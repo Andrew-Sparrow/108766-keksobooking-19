@@ -1,7 +1,9 @@
 # Personal training project «Apartment booking» [![Build status][travis-image]][travis-url]
 
-* Student: [Andrew Pecherskih](https://up.htmlacademy.ru/javascript/19/user/108766).
-
+* [Andrew Pecherskih](https://up.htmlacademy.ru/javascript/19/user/108766).
+---
+###### GitHub Pages Demo
+###### https://andrew-sparrow.github.io/CatEnergy-GP/
 ---
 ## JavaScript developing
 
@@ -15,7 +17,9 @@
 - Data structures
 - XMLHttpRequest
 
-
+---
+##### The full list of projects in my portfolio:
+##### https://andrew-sparrow.github.io/ap-portfolio
 ---
 
 <a href="https://htmlacademy.ru/intensive/javascript"><img align="left" width="50" height="50" alt="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/javascript/logo-for-github-2.png"></a>
