@@ -24,3 +24,5 @@ Repository was built to learn on on-line course «[Professional JavaScript](http
 
 [travis-image]: https://travis-ci.com/htmlacademy-javascript/108766-keksobooking-19.svg?branch=master
 [travis-url]: https://travis-ci.com/htmlacademy-javascript/108766-keksobooking-19
+
+![Alt text](img/screenshot.png?raw=true "Title")
